@@ -33,38 +33,38 @@ typedef enum
     LK_greater_than,
 } LK_relation;
 
-typedef void (^layoutBlock)(LKConstraints *c);
+typedef void (^LKLayoutBlock)(LKConstraints *c);
 
 @interface LKConstraints : NSObject
 
-+ (LKConstraints *)layout:(UIView *)view do:(layoutBlock)layoutBlock;
++ (LKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
 - (id)initWithView:(UIView *)view;
 
 - (void)set:(LK_attribute)attribute to:(CGFloat)constant;
 - (void)set:(LK_attribute)attribute to:(CGFloat)constant name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute on:(UIView *)targetView;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute on:(UIView *)targetView;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name;
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute;
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute name:(NSString *)name;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute;
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute name:(NSString *)name;
 
 @end

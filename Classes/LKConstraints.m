@@ -17,7 +17,7 @@
 
 @implementation LKConstraints
 
-+ (LKConstraints *)layout:(UIView *)view do:(layoutBlock)layoutBlock;
++ (LKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
 {
     LKConstraints *c = [[LKConstraints alloc] initWithView:view];
     layoutBlock(c);
@@ -49,30 +49,30 @@
 
 #pragma mark - DSL (MAKE)
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
 {
-    make(self.item, attribute, LK_equal_to, relatedView, relatedAttribute, multiplier, constant, targetView, nil);
+    make(self.item, attribute, LK_equal_to, relatedItem, relatedAttribute, multiplier, constant, targetView, nil);
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
-    make(self.item, attribute, LK_equal_to, relatedView, relatedAttribute, multiplier, constant, targetView, name);
+    make(self.item, attribute, LK_equal_to, relatedItem, relatedAttribute, multiplier, constant, targetView, name);
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:constant
             on:targetView];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:constant
@@ -80,20 +80,20 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:multiplier
           plus:0.f
             on:targetView];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:multiplier
           plus:0.f
@@ -101,20 +101,20 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute on:(UIView *)targetView
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute on:(UIView *)targetView
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:0.f
             on:targetView];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:0.f
@@ -122,20 +122,20 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:multiplier
           plus:constant
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:multiplier
           plus:constant
@@ -143,20 +143,20 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:constant
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:constant
@@ -164,20 +164,20 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:multiplier
           plus:0.f
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:multiplier
           plus:0.f
@@ -185,20 +185,20 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:0.f
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(UIView *)relatedView s:(LK_attribute)relatedAttribute name:(NSString *)name
+- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute name:(NSString *)name
 {
     [self make:attribute
-       equalTo:relatedView
+       equalTo:relatedItem
              s:relatedAttribute
          times:1.f
           plus:0.f
