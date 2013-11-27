@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LayoutKit"
-  s.version      = "0.1.0"
+  s.version      = "0.2.0"
   s.summary      = "A descriptive way to create NSLayoutConstraints in iOS 6.0+ and access / modify them on runtime."
   s.description  = <<-DESC
                    This Cocoa Touch framework provides a simple and intuitive 
