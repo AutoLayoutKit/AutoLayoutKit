@@ -1,0 +1,14 @@
+PODS:
+  - LayoutKit (0.1.0)
+
+DEPENDENCIES:
+  - LayoutKit (from `../LayoutKit.podspec`)
+
+EXTERNAL SOURCES:
+  LayoutKit:
+    :path: ../LayoutKit.podspec
+
+SPEC CHECKSUMS:
+  LayoutKit: cda3671796f31fc892125a9f6356c16ed01c4d4e
+
+COCOAPODS: 0.28.0
