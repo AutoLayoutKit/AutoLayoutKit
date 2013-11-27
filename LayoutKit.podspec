@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                    which run under iOS 6.0 or later. It is still 
                    work-in-progress and I have some plans on expanding it.
                    DESC
-  s.homepage     = "http://layoutkit.github.io"
+  s.homepage     = "http://xcuze.me/LayoutKit/"
   s.license      = 'MIT'
   s.author       = { "Florian Krueger" => "florian.krueger@projectserver.org" }
   s.source       = { :git => "https://github.com/floriankrueger/LayoutKit.git", 
