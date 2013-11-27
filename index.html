@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Layoutkit by floriankrueger</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Layoutkit</h1>
+        <p>A descriptive way to create NSLayoutConstraints in iOS 6.0+ and access / modify them on runtime.</p>
+
+        <p class="view"><a href="https://github.com/floriankrueger/LayoutKit">View the Project on GitHub <small>floriankrueger/LayoutKit</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/floriankrueger/LayoutKit/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/floriankrueger/LayoutKit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/floriankrueger/LayoutKit">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="layoutkit" class="anchor" href="#layoutkit"><span class="octicon octicon-link"></span></a>LayoutKit</h1>
+
+<p><a href="http://cocoadocs.org/docsets/LayoutKit"><img src="http://cocoapod-badges.herokuapp.com/v/LayoutKit/badge.png" alt="Version"></a>
+<a href="http://cocoadocs.org/docsets/LayoutKit"><img src="http://cocoapod-badges.herokuapp.com/p/LayoutKit/badge.png" alt="Platform"></a></p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>For a very basic running example check out the example app. Clone the repo and run <code>pod install</code> from the Project directory first.</p>
+
+<h3>
+<a name="nslayoutconstraint-types" class="anchor" href="#nslayoutconstraint-types"><span class="octicon octicon-link"></span></a>NSLayoutConstraint Types</h3>
+
+<p>There are two types of constraints that <em>LayoutKit</em> distinguishes:</p>
+
+<ol>
+<li>Related Constraints</li>
+<li>Unrelated Constraints</li>
+</ol><p><em>Related Constraints</em> specify a constraint of the target view that has a relation to a different view. For example "The button's width is 80% of the width of its superview." is a <em>related</em> constraint: The constraint specifies that the width of the button is relating to the width of the button's superview.</p>
+
+<p><em>Unrelated Constraints</em> are constraints that only deal with the view they belong to. All of them involve the usage of a constant. "The button's height is 44 pixels" is a <em>unrelated</em> constraint: It specifies the height of the button independently from any other view.</p>
+
+<h3>
+<a name="creating-nslayoutconstraint-instances" class="anchor" href="#creating-nslayoutconstraint-instances"><span class="octicon octicon-link"></span></a>Creating NSLayoutConstraint Instances</h3>
+
+<p><em>LayoutKit</em> tries to provide you with a DSL that makes it possible to create layout constraints in a natural language that is (by the way) much more compact than the original APIs in NSLayoutConstraint.</p>
+
+<p>A typical layout is created like this:</p>
+
+<pre><code>[LKConstraints layout:self.optionA do:^(LKConstraints *c) {
+    [c set:LK_height to:60.f name:kLKHeight];
+    [c set:LK_width to:60.f name:kLKWidth];
+    [c make:LK_right equalTo:self.optionB s:LK_left plus:-10.f];
+    [c make:LK_center_y equalTo:self s:LK_center_y];
+}];
+</code></pre>
+
+<p>This code does the following things for you:</p>
+
+<ol>
+<li>Disable the default translation of resizing masks to layout constraints</li>
+<li>Create a <em>unrelated</em> constraint on <code>self.optionA</code> that sets its <code>width</code> to 60 pixels</li>
+<li>Create a <em>unrelated</em> constraint on <code>self.optionA</code> that sets its <code>height</code> to 60 pixels</li>
+<li>Create a <em>related</em> constraint on <code>self</code> that aligns the right edge of <code>self.optionA</code> to the left edge of <code>self.optionB</code> minus 10 pixels (to create a margin of 10 pixels between the two buttons)</li>
+<li>Create a <em>related</em> constraint on <code>self</code> that centers the button vertically in `self</li>
+</ol><p>Pretty neat, isn’t it? In fact, <em>LayoutKit</em> does even more: it names the two unrelated constraints <code>kLKHeight</code> and <code>kLKWidth</code> so that you can access these constraints later on for modification on runtime.</p>
+
+<p>But let’s examine the basic functionality before we go into modifying the constraints. The syntax to create constraints for a view is this:</p>
+
+<pre><code>[LKConstraints layout:&lt;the receiver&gt; do:^(LKConstraints *c) {
+    &lt;constraints specification&gt;
+}];
+</code></pre>
+
+<p>Nothing magical so far. The <strong>receiver</strong> is the view that is affected by the constraints. This is, however, not always the view that the constraints are added to. You’ll see how to specify the target view (the one that the constraints are added to) in a second.</p>
+
+<p>There are two APIs to specify a constraint within the specification block: <code>set</code> and <code>make</code>. As you might have noticed, <code>set</code> creates <em>unrelated</em> constraints and <code>make</code> creates <em>related</em> constraints.</p>
+
+<blockquote>
+<p>With <strong>set</strong> you can directly <strong>set</strong> a layout property on a view while you can <strong>make</strong> layout properties of the receiver view like properties of other views using <strong>make</strong>.</p>
+</blockquote>
+
+<p>The (main) API for <strong>set</strong> is:</p>
+
+<pre><code>[c set:&lt;layout attribute&gt; to:&lt;constant&gt; name:&lt;name&gt;];
+</code></pre>
+
+<p>The (main) API for <strong>make</strong> is:</p>
+
+<pre><code>[c make:&lt;layout attribute&gt; equalTo:&lt;related view&gt; s:&lt;related views layout attribute&gt; plus:&lt;constant&gt;];
+</code></pre>
+
+<p>There are also APIs for both <strong>set</strong> and <strong>make</strong> that don't require a name. Also, as you might have noticed in the first example, there is an API for <strong>make</strong> that doesn't require a constant. I've really tried to make this as convenient as possible. There is a ton of other convenience methods that default to the most common value. Just check out the header file.</p>
+
+<h3>
+<a name="modifying-layout-constraints" class="anchor" href="#modifying-layout-constraints"><span class="octicon octicon-link"></span></a>Modifying Layout Constraints</h3>
+
+<p>There is little we can modify on existing NSLayoutConstraint instances and the only property we can modify is the so-called <strong>constant</strong>. I don’t know if Apple realized how hilarious this is when they thought for a name of this property.</p>
+
+<p>Normally when dealing with constraints that you want to modify later on, you need to keep references to the constraints all the time. With <em>LayoutKit</em> you can just forget about the constraints because <em>LayoutKit</em> keeps track of them if you tell it how you want to refer to a specific constraint later on. All constraints, that are created with a name (which is optional) can be retrieved from the target view at any time using the following API:</p>
+
+<pre><code>constraintWithName:
+</code></pre>
+
+<p>Similarly, these constraints can be removed from a target view by calling:</p>
+
+<pre><code>removeConstraintWithName:
+</code></pre>
+
+<p>The constraints retrieved via constraintWithName: can then be modified like this:</p>
+
+<pre><code>NSLayoutConstraint *height = [button constraintWithName:kLKHeight];
+height.constant = 70.f;
+[button setNeedsUpdateConstraints];
+</code></pre>
+
+<p>The first line retrieves the constraint and stores it in height. The second line modifies the constraint’s constant, the last line flags the button (the target view) that it needs to update its constraints.</p>
+
+<p>Note that the changes are not effective after these lines. They become effective when you call <code>layoutIfNeeded</code> on the closest anchestor view of all affected views. This can be done within an animation block which will then animate from the last (current) constraint setting to the changed setting.</p>
+
+<blockquote>
+<p>Because you normally change more than one constraint at once, this call is not performed transparently by <em>LayoutKit</em>. You know, when all of your (simultaneous) changes are done and all affected views are marked for update. And you know, wether the changes should be applied animated or immediately.</p>
+</blockquote>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>LayoutKit is available through <a href="http://cocoapods.org">CocoaPods</a>, to install
+it simply add the following line to your Podfile:</p>
+
+<pre><code>pod "LayoutKit"
+</code></pre>
+
+<h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p>Florian Krueger, <a href="mailto:florian.krueger@projectserver.org">florian.krueger@projectserver.org</a></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>LayoutKit is available under the MIT license. See the LICENSE file for more info.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/floriankrueger">floriankrueger</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
