@@ -24,12 +24,14 @@ There are two types of constraints that *LayoutKit* distinguishes:
 
 A typical layout is created like this:
 
-    [LKConstraints layout:self.optionA do:^(LKConstraints *c) {
-        [c set:LK_height to:60.f name:kLKHeight];
-        [c set:LK_width to:60.f name:kLKWidth];
-        [c make:LK_right equalTo:self.optionB s:LK_left plus:-10.f];
-        [c make:LK_center_y equalTo:self s:LK_center_y];
-    }];
+```Objective-C
+[LKConstraints layout:self.optionA do:^(LKConstraints *c) {
+    [c set:LK_height to:60.f name:kLKHeight];
+    [c set:LK_width to:60.f name:kLKWidth];
+    [c make:LK_right equalTo:self.optionB s:LK_left plus:-10.f];
+    [c make:LK_center_y equalTo:self s:LK_center_y];
+}];
+```
 
 This code does the following things for you:
 
@@ -43,9 +45,11 @@ Pretty neat, isn’t it? In fact, *LayoutKit* does even more: it names the two u
 
 But let’s examine the basic functionality before we go into modifying the constraints. The syntax to create constraints for a view is this:
 
-    [LKConstraints layout:<the receiver> do:^(LKConstraints *c) {
-        <constraints specification>
-    }];
+```Objective-C
+[LKConstraints layout:<the receiver> do:^(LKConstraints *c) {
+    <constraints specification>
+}];
+```
 
 Nothing magical so far. The **receiver** is the view that is affected by the constraints. This is, however, not always the view that the constraints are added to. You’ll see how to specify the target view (the one that the constraints are added to) in a second.
 
@@ -55,11 +59,15 @@ There are two APIs to specify a constraint within the specification block: `set`
 
 The (main) API for **set** is:
 
-    [c set:<layout attribute> to:<constant> name:<name>];
+```Objective-C
+[c set:<layout attribute> to:<constant> name:<name>];
+```
 
 The (main) API for **make** is:
 
-    [c make:<layout attribute> equalTo:<related view> s:<related views layout attribute> plus:<constant>];
+```Objective-C
+[c make:<layout attribute> equalTo:<related view> s:<related views layout attribute> plus:<constant>];
+```
 
 There are also APIs for both **set** and **make** that don't require a name. Also, as you might have noticed in the first example, there is an API for **make** that doesn't require a constant. I've really tried to make this as convenient as possible. There is a ton of other convenience methods that default to the most common value. Just check out the header file.
 
@@ -69,17 +77,23 @@ There is little we can modify on existing NSLayoutConstraint instances and the o
 
 Normally when dealing with constraints that you want to modify later on, you need to keep references to the constraints all the time. With *LayoutKit* you can just forget about the constraints because *LayoutKit* keeps track of them if you tell it how you want to refer to a specific constraint later on. All constraints, that are created with a name (which is optional) can be retrieved from the target view at any time using the following API:
 
-	constraintWithName:
+```Objective-C
+[someView constraintWithName:<some name>];
+```
 	
 Similarly, these constraints can be removed from a target view by calling:
 
-	removeConstraintWithName:
+```Objective-C
+[someView removeConstraintWithName:<some name>];
+```
 	
 The constraints retrieved via constraintWithName: can then be modified like this:
 
-	NSLayoutConstraint *height = [button constraintWithName:kLKHeight];
-    height.constant = 70.f;
-    [button setNeedsUpdateConstraints];
+```Objective-C
+NSLayoutConstraint *height = [button constraintWithName:kLKHeight];
+height.constant = 70.f;
+[button setNeedsUpdateConstraints];
+```
     
 The first line retrieves the constraint and stores it in height. The second line modifies the constraint’s constant, the last line flags the button (the target view) that it needs to update its constraints.
 
@@ -94,7 +108,9 @@ Note that the changes are not effective after these lines. They become effective
 LayoutKit is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
-    pod "LayoutKit"
+```Ruby
+pod "LayoutKit"
+```
 
 ## Author
 
