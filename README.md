@@ -120,3 +120,7 @@ Florian Krueger, florian.krueger@projectserver.org
 
 LayoutKit is available under the MIT license. See the LICENSE file for more info.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/layoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
