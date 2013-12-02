@@ -2,6 +2,7 @@
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/LayoutKit/badge.png)](http://cocoadocs.org/docsets/LayoutKit)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/LayoutKit/badge.png)](http://cocoadocs.org/docsets/LayoutKit)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/layoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Usage
 
@@ -122,5 +123,5 @@ LayoutKit is available under the MIT license. See the LICENSE file for more info
 
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/layoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
