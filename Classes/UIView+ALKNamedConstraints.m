@@ -1,6 +1,6 @@
 //
-//  UIView+LKNamedConstraints.m
-//  LayoutKitPrototype
+//  UIView+ALKNamedConstraints.m
+//  AutoLayoutKit
 //
 //  Created by Florian Krüger on 07/03/13.
 //  Copyright (c) 2013 projectserver.org. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <objc/runtime.h>
 
-#import "UIView+LKNamedConstraints.h"
+#import "UIView+ALKNamedConstraints.h"
 
-NSString * const kLKNamedConstraints = @"kLKNamedConstraints";
+NSString * const kALKNamedConstraints = @"kALKNamedConstraints";
 
-@implementation UIView (LKNamedConstraints)
+@implementation UIView (ALKNamedConstraints)
 
 #pragma mark - Public API
 

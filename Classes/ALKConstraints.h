@@ -1,6 +1,6 @@
 //
-//  LKConstraints.h
-//  LayoutKitPrototype
+//  ALKConstraints.h
+//  AutoLayoutKit
 //
 //  Created by Florian Krüger on 07/03/13.
 //  Copyright (c) 2013 projectserver.org. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class LKConstraints;
+@class ALKConstraints;
 
 typedef enum
 {
@@ -33,11 +33,11 @@ typedef enum
     LK_greater_than,
 } LK_relation;
 
-typedef void (^LKLayoutBlock)(LKConstraints *c);
+typedef void (^LKLayoutBlock)(ALKConstraints *c);
 
-@interface LKConstraints : NSObject
+@interface ALKConstraints : NSObject
 
-+ (LKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
++ (ALKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
 - (id)initWithView:(UIView *)view;
 
 - (void)set:(LK_attribute)attribute to:(CGFloat)constant;

@@ -1,6 +1,6 @@
 //
-//  UIView+LKNamedConstraints.h
-//  LayoutKitPrototype
+//  UIView+ALKNamedConstraints.h
+//  AutoLayoutKit
 //
 //  Created by Florian Krüger on 07/03/13.
 //  Copyright (c) 2013 projectserver.org. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (LKNamedConstraints)
+@interface UIView (ALKNamedConstraints)
 
 @property (nonatomic, retain) NSMutableDictionary* LK_namedConstraints;
 

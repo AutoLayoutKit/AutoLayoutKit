@@ -1,25 +1,25 @@
 //
-//  LKConstraints.m
-//  LayoutKitPrototype
+//  ALKConstraints.m
+//  AutoLayoutKit
 //
 //  Created by Florian Krüger on 07/03/13.
 //  Copyright (c) 2013 projectserver.org. All rights reserved.
 //
 
-#import "LKConstraints.h"
-#import "UIView+LKNamedConstraints.h"
+#import "ALKConstraints.h"
+#import "UIView+ALKNamedConstraints.h"
 
-@interface LKConstraints ()
+@interface ALKConstraints ()
 
 @property (nonatomic, strong) UIView *item;
 
 @end
 
-@implementation LKConstraints
+@implementation ALKConstraints
 
-+ (LKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
++ (ALKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
 {
-    LKConstraints *c = [[LKConstraints alloc] initWithView:view];
+    ALKConstraints *c = [[ALKConstraints alloc] initWithView:view];
     layoutBlock(c);
     
     return c;
@@ -239,9 +239,9 @@ NSLayoutConstraint * createLayoutConstraint(UIView *item,
                                             UIView *targetItem,
                                             NSString *name)
 {
-    NSLayoutAttribute itemAttributeValue = [LKConstraints enumToAttribute:itemAttribute];
-    NSLayoutRelation relationValue = [LKConstraints enumToRelation:relation];
-    NSLayoutAttribute relatedItemAttributeValue = [LKConstraints enumToAttribute:relatedItemAttribute];
+    NSLayoutAttribute itemAttributeValue = [ALKConstraints enumToAttribute:itemAttribute];
+    NSLayoutRelation relationValue = [ALKConstraints enumToRelation:relation];
+    NSLayoutAttribute relatedItemAttributeValue = [ALKConstraints enumToAttribute:relatedItemAttribute];
     
     NSLayoutConstraint *lc = [NSLayoutConstraint constraintWithItem:item
                                                           attribute:itemAttributeValue
