@@ -1,8 +1,8 @@
 # LayoutKit
 
-[![Version](http://cocoapod-badges.herokuapp.com/v/LayoutKit/badge.png)](http://cocoadocs.org/docsets/LayoutKit)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/LayoutKit/badge.png)](http://cocoadocs.org/docsets/LayoutKit)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/layoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Version](http://cocoapod-badges.herokuapp.com/v/AutoLayoutKit/badge.png)](http://cocoadocs.org/docsets/AutoLayoutKit)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/AutoLayoutKit/badge.png)](http://cocoadocs.org/docsets/AutoLayoutKit)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/autolayoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Usage
 
