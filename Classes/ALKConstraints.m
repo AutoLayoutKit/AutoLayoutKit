@@ -252,7 +252,7 @@ NSLayoutConstraint * createLayoutConstraint(UIView *item,
                                                            constant:constant];
     
     if (nil != name) {
-        [targetItem addConstraint:lc withName:name];
+        [targetItem alk_addConstraint:lc withName:name];
     } else {
         [targetItem addConstraint:lc];
     }

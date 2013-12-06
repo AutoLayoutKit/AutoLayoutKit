@@ -38,8 +38,8 @@ NSString * const kLKHeight  = @"height";
 
 - (void)growButton:(UIButton *)button
 {
-    NSLayoutConstraint *width = [button constraintWithName:kLKWidth];
-    NSLayoutConstraint *height = [button constraintWithName:kLKHeight];
+    NSLayoutConstraint *width = [button alk_constraintWithName:kLKWidth];
+    NSLayoutConstraint *height = [button alk_constraintWithName:kLKHeight];
     width.constant = 70.f;
     height.constant = 70.f;
     [button setNeedsUpdateConstraints];
@@ -47,8 +47,8 @@ NSString * const kLKHeight  = @"height";
 
 - (void)shrinkButton:(UIButton *)button
 {
-    NSLayoutConstraint *width = [button constraintWithName:kLKWidth];
-    NSLayoutConstraint *height = [button constraintWithName:kLKHeight];
+    NSLayoutConstraint *width = [button alk_constraintWithName:kLKWidth];
+    NSLayoutConstraint *height = [button alk_constraintWithName:kLKHeight];
     width.constant = 60.f;
     height.constant = 60.f;
     [button setNeedsUpdateConstraints];

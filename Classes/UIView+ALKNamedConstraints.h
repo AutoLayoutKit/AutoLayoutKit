@@ -10,7 +10,7 @@
 
 @interface UIView (ALKNamedConstraints)
 
-@property (nonatomic, retain) NSMutableDictionary* LK_namedConstraints;
+@property (nonatomic, retain, setter = alk_setNamedConstraints:) NSMutableDictionary* alk_namedConstraints;
 
 /** Tries to add a constraint to the `UIView` while remembering the `constraint_name` for future
  *  reference.
@@ -19,7 +19,7 @@
  *
  *  @return The added constraint or `nil` if the name is already used.
  */
-- (NSLayoutConstraint *)addConstraint:(NSLayoutConstraint *)constraint withName:(NSString *)name;
+- (NSLayoutConstraint *)alk_addConstraint:(NSLayoutConstraint *)constraint withName:(NSString *)name;
 
 /** Looks in the named constraints for a constraint named `name` and returns it when found, `nil`
  *  otherwise.
@@ -29,7 +29,7 @@
  *  @return The constrainted with the identifier `name` or `nil` if the name is not used for a 
  *  constraint.
  */
-- (NSLayoutConstraint *)constraintWithName:(NSString *)name;
+- (NSLayoutConstraint *)alk_constraintWithName:(NSString *)name;
 
 /** Takes an array of names and tries to remove all `NSLayoutConstraint` instances from the receiver
  *  which are referenced by the given names. If a name does not refer to a `NSLayoutConstraint`, it
@@ -40,7 +40,7 @@
  *
  *  @see removeConstraintWithName:
  */
-- (void)removeConstraintsWithNames:(NSArray *)names;
+- (void)alk_removeConstraintsWithNames:(NSArray *)names;
 
 /** Takes as single name and tries to remove the `NSLayoutConstraint` instance from the receiver
  *  which is referenced by the given name. If the name does not refer to a `NSLayoutConstraint`, it
@@ -51,6 +51,6 @@
  *
  *  @see removeConstraintsWithNames:
  */
-- (void)removeConstraintWithName:(NSString *)name;
+- (void)alk_removeConstraintWithName:(NSString *)name;
 
 @end

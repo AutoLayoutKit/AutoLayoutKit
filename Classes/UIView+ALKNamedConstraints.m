@@ -16,11 +16,11 @@ NSString * const kALKNamedConstraints = @"kALKNamedConstraints";
 
 #pragma mark - Public API
 
-- (NSLayoutConstraint *)addConstraint:(NSLayoutConstraint *)constraint withName:(NSString *)name
+- (NSLayoutConstraint *)alk_addConstraint:(NSLayoutConstraint *)constraint withName:(NSString *)name
 {
     if ((nil == constraint) || (nil == name)) return FALSE;
     
-    NSMutableDictionary *namedConstraints = [self LK_namedConstraints];
+    NSMutableDictionary *namedConstraints = [self alk_namedConstraints];
     
     // try to load existing constraint as we don't want to simply overwrite old constraints
     NSLayoutConstraint *oldConstraint = namedConstraints[name];
@@ -35,11 +35,11 @@ NSString * const kALKNamedConstraints = @"kALKNamedConstraints";
     }
 }
 
-- (NSLayoutConstraint *)constraintWithName:(NSString *)name
+- (NSLayoutConstraint *)alk_constraintWithName:(NSString *)name
 {
     if (nil == name) return nil;
     
-    id obj = self.LK_namedConstraints[name];
+    id obj = self.alk_namedConstraints[name];
     
     if ([obj isKindOfClass:[NSLayoutConstraint class]]) {
         return (NSLayoutConstraint *)obj;
@@ -48,48 +48,48 @@ NSString * const kALKNamedConstraints = @"kALKNamedConstraints";
     return nil;
 }
 
-- (void)removeConstraintsWithNames:(NSArray *)names
+- (void)alk_removeConstraintsWithNames:(NSArray *)names
 {
     for (id obj in names) {
         if ([obj isKindOfClass:[NSString class]]) {
-            [self removeConstraintWithName:(NSString *)obj];
+            [self alk_removeConstraintWithName:(NSString *)obj];
         }
     }
 }
 
-- (void)removeConstraintWithName:(NSString *)name
+- (void)alk_removeConstraintWithName:(NSString *)name
 {
     if (nil == name) return;
     
-    NSLayoutConstraint *constraint = [self constraintWithName:name];
+    NSLayoutConstraint *constraint = [self alk_constraintWithName:name];
     
     if (nil != constraint) {
         [self removeConstraint:constraint];
-        [self.LK_namedConstraints removeObjectForKey:name];
+        [self.alk_namedConstraints removeObjectForKey:name];
     }
 }
 
 #pragma mark - Getter & Setter LK_namedConstraints
 
-- (void)setLK_namedConstraints:(NSMutableDictionary *)namedConstraintsDict
+- (void)alk_setNamedConstraints:(NSMutableDictionary *)namedConstraintsDict
 {
-	objc_setAssociatedObject(self, (__bridge const void *)(kLKNamedConstraints), namedConstraintsDict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	objc_setAssociatedObject(self, (__bridge const void *)(kALKNamedConstraints), namedConstraintsDict, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSMutableDictionary *)LK_namedConstraints
+- (NSMutableDictionary *)alk_namedConstraints
 {
-    NSMutableDictionary *namedConstraints = objc_getAssociatedObject(self, (__bridge const void *)(kLKNamedConstraints));
+    NSMutableDictionary *namedConstraints = objc_getAssociatedObject(self, (__bridge const void *)(kALKNamedConstraints));
     
     // there is no namedConstraints dictionary yet -> create one
     if (nil == namedConstraints) {
         namedConstraints = [NSMutableDictionary dictionary];
-        [self setLK_namedConstraints:namedConstraints];
+        [self alk_setNamedConstraints:namedConstraints];
     }
     
     // the retrieved object is not the expected NSMutableDictionary -> overwrite it with a new one
     else if (![namedConstraints isKindOfClass:[NSMutableDictionary class]]) {
         namedConstraints = [NSMutableDictionary dictionary];
-        [self setLK_namedConstraints:namedConstraints];
+        [self alk_setNamedConstraints:namedConstraints];
     }
     
 	return namedConstraints;
