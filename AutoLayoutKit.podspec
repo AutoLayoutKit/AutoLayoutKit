@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "LayoutKit"
+  s.name         = "AutoLayoutKit"
   s.version      = "0.2.1"
   s.summary      = "A descriptive way to create NSLayoutConstraints for AutoLayout in iOS 6.0+ and access / modify them on runtime."
   s.description  = <<-DESC
