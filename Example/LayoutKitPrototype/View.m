@@ -101,24 +101,24 @@ NSString * const kLKHeight  = @"height";
 - (void)setupLayout
 {
     [ALKConstraints layout:self.optionA do:^(ALKConstraints *c) {
-        [c set:LK_height to:60.f name:kLKHeight];
-        [c set:LK_width to:60.f name:kLKWidth];
-        [c make:LK_right equalTo:self.optionB s:LK_left plus:-10.f];
-        [c make:LK_center_y equalTo:self s:LK_center_y];
+        [c set:ALKHeight to:60.f name:kLKHeight];
+        [c set:ALKWidth to:60.f name:kLKWidth];
+        [c make:ALKRight equalTo:self.optionB s:ALKLeft plus:-10.f];
+        [c make:ALKCenterY equalTo:self s:ALKCenterY];
     }];
     
     [ALKConstraints layout:self.optionB do:^(ALKConstraints *c) {
-        [c set:LK_height to:60.f name:kLKHeight];
-        [c set:LK_width to:60.f name:kLKWidth];
-        [c make:LK_center_x equalTo:self s:LK_center_x];
-        [c make:LK_center_y equalTo:self s:LK_center_y];
+        [c set:ALKHeight to:60.f name:kLKHeight];
+        [c set:ALKWidth to:60.f name:kLKWidth];
+        [c make:ALKCenterX equalTo:self s:ALKCenterX];
+        [c make:ALKCenterY equalTo:self s:ALKCenterY];
     }];
     
     [ALKConstraints layout:self.optionC do:^(ALKConstraints *c) {
-        [c set:LK_height to:60.f name:kLKHeight];
-        [c set:LK_width to:60.f name:kLKWidth];
-        [c make:LK_left equalTo:self.optionB s:LK_right plus:10.f];
-        [c make:LK_center_y equalTo:self s:LK_center_y];
+        [c set:ALKHeight to:60.f name:kLKHeight];
+        [c set:ALKWidth to:60.f name:kLKWidth];
+        [c make:ALKLeft equalTo:self.optionB s:ALKRight plus:10.f];
+        [c make:ALKCenterY equalTo:self s:ALKCenterY];
     }];
 }
 

@@ -37,29 +37,29 @@
 
 #pragma mark - DSL (SET)
 
-- (void)set:(LK_attribute)attribute to:(CGFloat)constant
+- (void)set:(ALKAttribute)attribute to:(CGFloat)constant
 {
     set(self.item, attribute, constant, nil);
 }
 
-- (void)set:(LK_attribute)attribute to:(CGFloat)constant name:(NSString *)name
+- (void)set:(ALKAttribute)attribute to:(CGFloat)constant name:(NSString *)name
 {
     set(self.item, attribute, constant, name);
 }
 
 #pragma mark - DSL (MAKE)
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
 {
-    make(self.item, attribute, LK_equal_to, relatedItem, relatedAttribute, multiplier, constant, targetView, nil);
+    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, nil);
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
-    make(self.item, attribute, LK_equal_to, relatedItem, relatedAttribute, multiplier, constant, targetView, name);
+    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, name);
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
 {
     [self make:attribute
        equalTo:relatedItem
@@ -69,7 +69,7 @@
             on:targetView];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -80,7 +80,7 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView
 {
     [self make:attribute
        equalTo:relatedItem
@@ -90,7 +90,7 @@
             on:targetView];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -101,7 +101,7 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute on:(UIView *)targetView
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute on:(UIView *)targetView
 {
     [self make:attribute
        equalTo:relatedItem
@@ -111,7 +111,7 @@
             on:targetView];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -122,7 +122,7 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant
 {
     [self make:attribute
        equalTo:relatedItem
@@ -132,7 +132,7 @@
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -143,7 +143,7 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant
 {
     [self make:attribute
        equalTo:relatedItem
@@ -153,7 +153,7 @@
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -164,7 +164,7 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier
 {
     [self make:attribute
        equalTo:relatedItem
@@ -174,7 +174,7 @@
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -185,7 +185,7 @@
           name:name];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute
 {
     [self make:attribute
        equalTo:relatedItem
@@ -195,7 +195,7 @@
             on:self.item.superview];
 }
 
-- (void)make:(LK_attribute)attribute equalTo:(id)relatedItem s:(LK_attribute)relatedAttribute name:(NSString *)name
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute name:(NSString *)name
 {
     [self make:attribute
        equalTo:relatedItem
@@ -209,18 +209,18 @@
 #pragma mark - Functions
 
 void set (UIView *item,
-          LK_attribute itemAttribute,
+          ALKAttribute itemAttribute,
           CGFloat constant,
           NSString *name)
 {
-    createLayoutConstraint(item, itemAttribute, LK_equal_to, nil, LK_na, 1.f, constant, item, name);
+    createLayoutConstraint(item, itemAttribute, ALKEqualTo, nil, ALKNone, 1.f, constant, item, name);
 }
 
 void make(UIView *item,
-          LK_attribute itemAttribute,
-          LK_relation relation,
+          ALKAttribute itemAttribute,
+          ALKRelation relation,
           id relatedItem,
-          LK_attribute relatedItemAttribute,
+          ALKAttribute relatedItemAttribute,
           CGFloat multiplier,
           CGFloat constant,
           UIView *targetItem,
@@ -230,10 +230,10 @@ void make(UIView *item,
 }
 
 NSLayoutConstraint * createLayoutConstraint(UIView *item,
-                                            LK_attribute itemAttribute,
-                                            LK_relation relation,
+                                            ALKAttribute itemAttribute,
+                                            ALKRelation relation,
                                             id relatedItem,
-                                            LK_attribute relatedItemAttribute,
+                                            ALKAttribute relatedItemAttribute,
                                             CGFloat multiplier,
                                             CGFloat constant,
                                             UIView *targetItem,
@@ -262,44 +262,44 @@ NSLayoutConstraint * createLayoutConstraint(UIView *item,
 
 #pragma mark - ENUM Conversion
 
-+ (NSLayoutAttribute)enumToAttribute:(LK_attribute)attribute
++ (NSLayoutAttribute)enumToAttribute:(ALKAttribute)attribute
 {
     switch (attribute) {
-        case LK_left:
+        case ALKLeft:
             return NSLayoutAttributeLeft;
-        case LK_right:
+        case ALKRight:
             return NSLayoutAttributeRight;
-        case LK_top:
+        case ALKTop:
             return NSLayoutAttributeTop;
-        case LK_bottom:
+        case ALKBottom:
             return NSLayoutAttributeBottom;
-        case LK_leading:
+        case ALKLeading:
             return NSLayoutAttributeLeading;
-        case LK_trailing:
+        case ALKTrailing:
             return NSLayoutAttributeTrailing;
-        case LK_width:
+        case ALKWidth:
             return NSLayoutAttributeWidth;
-        case LK_height:
+        case ALKHeight:
             return NSLayoutAttributeHeight;
-        case LK_center_x:
+        case ALKCenterX:
             return NSLayoutAttributeCenterX;
-        case LK_center_y:
+        case ALKCenterY:
             return NSLayoutAttributeCenterY;
-        case LK_baseline:
+        case ALKBaseline:
             return NSLayoutAttributeBaseline;
-        case LK_na:
+        case ALKNone:
             return NSLayoutAttributeNotAnAttribute;
     }
 }
 
-+ (NSLayoutRelation)enumToRelation:(LK_relation)relation
++ (NSLayoutRelation)enumToRelation:(ALKRelation)relation
 {
     switch (relation) {
-        case LK_less_than:
+        case ALKLessThan:
             return NSLayoutRelationLessThanOrEqual;
-        case LK_equal_to:
+        case ALKEqualTo:
             return NSLayoutRelationEqual;
-        case LK_greater_than:
+        case ALKGreaterThan:
             return NSLayoutRelationGreaterThanOrEqual;
     }
 }
