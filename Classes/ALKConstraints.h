@@ -10,8 +10,7 @@
 
 @class ALKConstraints;
 
-typedef enum
-{
+typedef NS_ENUM(NSInteger, ALKAttribute) {
     ALKLeft,
     ALKRight,
     ALKTop,
@@ -23,15 +22,14 @@ typedef enum
     ALKCenterX,
     ALKCenterY,
     ALKBaseline,
-    ALKNone,
-} ALKAttribute;
+    ALKNone
+};
 
-typedef enum
-{
+typedef NS_ENUM(NSInteger, ALKRelation) {
     ALKLessThan,
     ALKEqualTo,
-    ALKGreaterThan,
-} ALKRelation;
+    ALKGreaterThan
+};
 
 typedef void (^LKLayoutBlock)(ALKConstraints *c);
 
