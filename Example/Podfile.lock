@@ -1,5 +1,5 @@
 PODS:
-  - AutoLayoutKit (0.2.1)
+  - AutoLayoutKit (0.3.0)
 
 DEPENDENCIES:
   - AutoLayoutKit (from `../AutoLayoutKit.podspec`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../AutoLayoutKit.podspec
 
 SPEC CHECKSUMS:
-  AutoLayoutKit: 9d9a6ebc777adf513e4a61f28efb8682829a7033
+  AutoLayoutKit: c0f01246bc90d2b8fad8c93cfa4cfecb6b8b94d0
 
 COCOAPODS: 0.28.0
