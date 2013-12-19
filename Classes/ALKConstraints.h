@@ -689,4 +689,204 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
         name:(NSString *)name;
 
+////////////////////////////////////////////////////////////////////////////////
+/// @name Make Less Than or Equal to
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute;
+
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        name:(NSString *)name;
+
+////////////////////////////////////////////////////////////////////////////////
+/// @name Make Greater Than or Equal to
+////////////////////////////////////////////////////////////////////////////////
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+          on:(UIView *)targetView;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        plus:(CGFloat)constant
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        plus:(CGFloat)constant
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+        name:(NSString *)name;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute;
+
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+        name:(NSString *)name;
+
+
 @end

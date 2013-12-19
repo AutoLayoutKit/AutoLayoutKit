@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B0BF4827-D262-4CD2-AB76-BFE0BBCBEB5A</string>
+	<string>DF109CDB-33C7-43A9-983F-4688732C475E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>LayoutKitPrototype</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>F0D51154-801C-45C6-B394-10DC0E0990F6</key>
-		<string>ssh://github.com/floriankrueger/LayoutKit.git</string>
+		<key>78C53335-9186-40C6-B983-43875B7E4259</key>
+		<string>ssh://github.com/floriankrueger/AutoLayoutKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Example/LayoutKitPrototype.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>F0D51154-801C-45C6-B394-10DC0E0990F6</key>
+		<key>78C53335-9186-40C6-B983-43875B7E4259</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/floriankrueger/LayoutKit.git</string>
+	<string>ssh://github.com/floriankrueger/AutoLayoutKit.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>F0D51154-801C-45C6-B394-10DC0E0990F6</string>
+	<string>78C53335-9186-40C6-B983-43875B7E4259</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>F0D51154-801C-45C6-B394-10DC0E0990F6</string>
+			<string>78C53335-9186-40C6-B983-43875B7E4259</string>
 			<key>IDESourceControlWCCName</key>
-			<string>LayoutKit</string>
+			<string>AutoLayoutKit</string>
 		</dict>
 	</array>
 </dict>

@@ -222,6 +222,324 @@
           name:name];
 }
 
+#pragma mark - DSL (MAKE/LESSTHAN)
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
+{
+    make(self.item, attribute, ALKLessThan, relatedView, relatedAttribute, multiplier, constant, targetView, nil);
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    make(self.item, attribute, ALKLessThan, relatedView, relatedAttribute, multiplier, constant, targetView, name);
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:targetView];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:targetView];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute on:(UIView *)targetView
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:targetView];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:constant
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:self.item.superview
+          name:name];
+}
+
+#pragma mark - DSL (MAKE/GREATERTHAN)
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
+{
+    make(self.item, attribute, ALKGreaterThan, relatedView, relatedAttribute, multiplier, constant, targetView, nil);
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    make(self.item, attribute, ALKGreaterThan, relatedView, relatedAttribute, multiplier, constant, targetView, name);
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:targetView];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:targetView];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute on:(UIView *)targetView
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:targetView];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:constant
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:multiplier
+          plus:0.f
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:self.item.superview];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedView
+             s:relatedAttribute
+         times:1.f
+          plus:0.f
+            on:self.item.superview
+          name:name];
+}
+
 #pragma mark - Functions
 
 void set (UIView *item,
