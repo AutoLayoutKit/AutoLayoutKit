@@ -1,8 +1,8 @@
-//  ViewController.h
+//  LKPMainView.h
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
-//  Created on 07/03/13.
+//  Created on 07/09/13.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LKPMainView : UIView
+
+@property (nonatomic, strong) UIButton *optionA;
+@property (nonatomic, strong) UIButton *optionB;
+@property (nonatomic, strong) UIButton *optionC;
+
+@property (nonatomic, strong) UIButton *activeButton;
 
 @end

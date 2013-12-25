@@ -1,4 +1,4 @@
-//  AppDelegate.m
+//  LKPAppDelegate.m
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
@@ -22,17 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "AppDelegate.h"
+#import "LKPAppDelegate.h"
 
-#import "ViewController.h"
+#import "LKPMainViewController.h"
 
-@implementation AppDelegate
+@implementation LKPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:nil bundle:nil];
+    self.viewController = [[LKPMainViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

@@ -1,4 +1,4 @@
-//  View.m
+//  LKPMainView.m
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
@@ -22,14 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "View.h"
+#import "LKPMainView.h"
 
 #import "AutoLayoutKit.h"
 
 NSString * const kLKWidth   = @"width";
 NSString * const kLKHeight  = @"height";
 
-@implementation View
+@implementation LKPMainView
 
 - (id)initWithFrame:(CGRect)frame
 {

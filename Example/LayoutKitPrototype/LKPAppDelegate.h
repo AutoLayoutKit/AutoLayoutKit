@@ -1,4 +1,4 @@
-//  ViewController.m
+//  LKPAppDelegate.h
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
@@ -22,27 +22,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "ViewController.h"
+#import <UIKit/UIKit.h>
 
-#import "View.h"
+@class LKPMainViewController;
 
-@interface ViewController ()
+@interface LKPAppDelegate : UIResponder <UIApplicationDelegate>
 
-@end
+@property (strong, nonatomic) UIWindow *window;
 
-@implementation ViewController
-
-- (void)loadView
-{
-    View *view = [[View alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.view = view;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+@property (strong, nonatomic) LKPMainViewController *viewController;
 
 @end
