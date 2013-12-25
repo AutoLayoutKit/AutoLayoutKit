@@ -26,10 +26,4 @@
 
 @interface LKPMainView : UIView
 
-@property (nonatomic, strong) UIButton *optionA;
-@property (nonatomic, strong) UIButton *optionB;
-@property (nonatomic, strong) UIButton *optionC;
-
-@property (nonatomic, strong) UIButton *activeButton;
-
 @end
