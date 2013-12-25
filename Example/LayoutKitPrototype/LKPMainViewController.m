@@ -24,20 +24,71 @@
 
 #import "LKPMainViewController.h"
 
-#import "LKPMainView.h"
+#import "LKPMainMenuController.h"
 
-@interface LKPMainViewController ()
+@interface LKPMainViewController () <UITableViewDelegate>
+
+@property (nonatomic, strong, readwrite) LKPMainMenuController *mainMenuController;
+@property (nonatomic, strong, readwrite) UITableView *mainMenuTableView;
 
 @end
 
 @implementation LKPMainViewController
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup
+{
+    self.title = @"AutoLayoutKit";
+    
+    // Main Menu
+    self.mainMenuController = [[LKPMainMenuController alloc] init];
+}
+
+#pragma mark - View Lifecycle
+
 - (void)loadView
 {
-    LKPMainView *view = [[LKPMainView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.view = view;
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    
+    self.mainMenuTableView = [[UITableView alloc] initWithFrame:bounds
+                                                          style:UITableViewStylePlain];
+    self.mainMenuTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.mainMenuController setTableView:self.mainMenuTableView];
+    
+    self.view = self.mainMenuTableView;
 }
+
+#pragma mark - UITableViewDelegate
+
+// TODO: delegate
+
+#pragma mark - Memory Management
 
 - (void)didReceiveMemoryWarning
 {

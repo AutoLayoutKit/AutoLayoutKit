@@ -1,8 +1,8 @@
-//  LKPMainView.m
+//  LKPMainMenuItem.m
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
-//  Created on 07/09/13.
+//  Created on 12/25/13.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,41 +22,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "LKPMainView.h"
+#import "LKPMainMenuItem.h"
 
-#import "AutoLayoutKit.h"
+#import "LKPSimpleViewController.h"
 
-@implementation LKPMainView
+NSString * const kLKPsimpleMenuItemIdentifier = @"LKPsimpleMenuItemIdentifier";
 
-- (id)initWithFrame:(CGRect)frame
+@implementation LKPMainMenuItem
+
++ (instancetype)simpleMenuItem
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
-}
-
-- (void)setup
-{
-    // view setup
-    self.backgroundColor = [UIColor grayColor];
-    
-    // subviews
-    [self setupSubviews];
-    [self setupLayout];
-}
-
-#pragma mark - Setup (internal)
-
-- (void)setupSubviews
-{
-
-}
-
-- (void)setupLayout
-{
-
+    LKPMainMenuItem *item = [[LKPMainMenuItem alloc] init];
+    item.title = @"Simple Button Example";
+    item.identifier = kLKPsimpleMenuItemIdentifier;
+    item.controllerClass = [LKPSimpleViewController class];
+    return item;
 }
 
 @end

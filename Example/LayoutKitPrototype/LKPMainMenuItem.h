@@ -1,8 +1,8 @@
-//  LKPMainView.h
+//  LKPMainMenuItem.h
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
-//  Created on 07/09/13.
+//  Created on 12/25/13.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface LKPMainView : UIView
+FOUNDATION_EXTERN NSString * const kLKPsimpleMenuItemIdentifier;
+
+@interface LKPMainMenuItem : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, assign) Class controllerClass;
+
++ (instancetype)simpleMenuItem;
 
 @end

@@ -1,4 +1,4 @@
-//  LKPSimpleViewController.m
+//  LKPMainMenuController.h
 //  AutoLayoutKitPrototype
 //
 //  Copyright (c) 2013 Florian Krueger <florian.krueger@projectserver.org>
@@ -22,27 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "LKPSimpleViewController.h"
+#import <UIKit/UIKit.h>
 
-#import "LKPSimpleView.h"
+@interface LKPMainMenuController : NSObject <UITableViewDataSource>
 
-@interface LKPSimpleViewController ()
+@property (nonatomic, weak, readwrite) UITableView *tableView;
 
-@end
-
-@implementation LKPSimpleViewController
-
-- (void)loadView
-{
-    LKPSimpleView *view = [[LKPSimpleView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.view = view;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+- (id)initWithTableView:(UITableView *)tableView;
 
 @end
