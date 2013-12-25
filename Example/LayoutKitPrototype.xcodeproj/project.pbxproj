@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A4349AF6566B47A4B968B61E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D0C4CD4284482782BD32E2 /* libPods.a */; };
 		CF215C9B178C4309005808C2 /* LKPMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF215C9A178C4309005808C2 /* LKPMainView.m */; };
+		CF5351ED186B24C9008210D9 /* LKPSimpleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351EC186B24C9008210D9 /* LKPSimpleViewController.m */; };
+		CF5351F0186B2541008210D9 /* LKPSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351EF186B2541008210D9 /* LKPSimpleView.m */; };
 		CFA47BA718469CB100DDFA75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA47BA618469CB100DDFA75 /* Images.xcassets */; };
 		CFA9B0051784365600D320ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9B0041784365600D320ED /* UIKit.framework */; };
 		CFA9B0071784365600D320ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9B0061784365600D320ED /* Foundation.framework */; };
@@ -26,6 +28,10 @@
 		83F409991E004A039B18F420 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		CF215C99178C4309005808C2 /* LKPMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPMainView.h; sourceTree = "<group>"; };
 		CF215C9A178C4309005808C2 /* LKPMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPMainView.m; sourceTree = "<group>"; };
+		CF5351EB186B24C9008210D9 /* LKPSimpleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPSimpleViewController.h; sourceTree = "<group>"; };
+		CF5351EC186B24C9008210D9 /* LKPSimpleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPSimpleViewController.m; sourceTree = "<group>"; };
+		CF5351EE186B2541008210D9 /* LKPSimpleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPSimpleView.h; sourceTree = "<group>"; };
+		CF5351EF186B2541008210D9 /* LKPSimpleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPSimpleView.m; sourceTree = "<group>"; };
 		CFA47BA618469CB100DDFA75 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CFA9B0011784365600D320ED /* LayoutKitPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA9B0041784365600D320ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -100,6 +106,10 @@
 				CFA9B01C1784365600D320ED /* LKPMainViewController.h */,
 				CFA9B01D1784365600D320ED /* LKPMainViewController.m */,
 				CFA47BA618469CB100DDFA75 /* Images.xcassets */,
+				CF5351EB186B24C9008210D9 /* LKPSimpleViewController.h */,
+				CF5351EC186B24C9008210D9 /* LKPSimpleViewController.m */,
+				CF5351EE186B2541008210D9 /* LKPSimpleView.h */,
+				CF5351EF186B2541008210D9 /* LKPSimpleView.m */,
 			);
 			path = LayoutKitPrototype;
 			sourceTree = "<group>";
@@ -220,6 +230,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF5351F0186B2541008210D9 /* LKPSimpleView.m in Sources */,
+				CF5351ED186B24C9008210D9 /* LKPSimpleViewController.m in Sources */,
 				CFA9B0111784365600D320ED /* main.m in Sources */,
 				CFA9B0151784365600D320ED /* LKPAppDelegate.m in Sources */,
 				CFA9B01E1784365600D320ED /* LKPMainViewController.m in Sources */,
