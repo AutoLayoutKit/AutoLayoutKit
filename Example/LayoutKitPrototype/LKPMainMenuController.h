@@ -24,10 +24,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LKPMainMenuController : NSObject <UITableViewDataSource>
+@class LKPMainMenuController;
+
+@protocol LKPMainMenuControllerDelegate <NSObject>
+
+- (void)mainMenuController:(LKPMainMenuController *)mainMenuController
+  didSelectControllerClass:(Class)viewControllerClass;
+
+@end
+
+@interface LKPMainMenuController : NSObject
 
 @property (nonatomic, weak, readwrite) UITableView *tableView;
+@property (nonatomic, weak, readwrite) id <LKPMainMenuControllerDelegate> delegate;
 
 - (id)initWithTableView:(UITableView *)tableView;
+
+- (void)deselectCurrentItem;
 
 @end

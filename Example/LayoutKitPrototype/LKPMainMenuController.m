@@ -27,9 +27,10 @@
 
 NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifier";
 
-@interface LKPMainMenuController ()
+@interface LKPMainMenuController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong, readwrite) NSArray *menuItems;
+@property (nonatomic, strong, readwrite) LKPMainMenuItem *selectedItem;
 
 @end
 
@@ -76,6 +77,21 @@ NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifi
     self.menuItems = [NSArray arrayWithArray:menuItems];
 }
 
+#pragma mark - Selection
+
+- (void)deselectCurrentItem
+{
+    if (self.selectedItem) {
+        NSUInteger row = [self.menuItems indexOfObject:self.selectedItem];
+        if (row != NSNotFound) {
+            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:row
+                                                                inSection:0];
+            [self.tableView deselectRowAtIndexPath:selectedIndexPath
+                                          animated:TRUE];
+        }
+    }
+}
+
 #pragma mark - UITableView
 
 - (void)setTableView:(UITableView *)tableView
@@ -95,13 +111,17 @@ NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifi
 
 - (void)setupTableView
 {
-    _tableView.dataSource = self;
+    [_tableView setDataSource:self];
+    [_tableView setDelegate:self];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLKPMainMenuMainCellIdentifier];
 }
 
 - (void)tearDownTableView
 {
-    _tableView.dataSource = nil;
+    [_tableView setDataSource:nil];
+    [_tableView setDelegate:nil];
+    
+    [self setSelectedItem:nil];
 }
 
 #pragma mark - UITableViewDataSource
@@ -123,6 +143,20 @@ NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifi
     [cell.textLabel setText:item.title];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LKPMainMenuItem *item = self.menuItems[indexPath.row];
+    
+    if (self.delegate) {
+        [self.delegate mainMenuController:self
+                 didSelectControllerClass:item.controllerClass];
+    }
+    
+    self.selectedItem = item;
 }
 
 @end

@@ -26,7 +26,7 @@
 
 #import "LKPMainMenuController.h"
 
-@interface LKPMainViewController () <UITableViewDelegate>
+@interface LKPMainViewController () <LKPMainMenuControllerDelegate>
 
 @property (nonatomic, strong, readwrite) LKPMainMenuController *mainMenuController;
 @property (nonatomic, strong, readwrite) UITableView *mainMenuTableView;
@@ -34,6 +34,8 @@
 @end
 
 @implementation LKPMainViewController
+
+#pragma mark - Setup & Init
 
 - (id)init
 {
@@ -68,6 +70,7 @@
     
     // Main Menu
     self.mainMenuController = [[LKPMainMenuController alloc] init];
+    self.mainMenuController.delegate = self;
 }
 
 #pragma mark - View Lifecycle
@@ -84,9 +87,24 @@
     self.view = self.mainMenuTableView;
 }
 
-#pragma mark - UITableViewDelegate
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.mainMenuController deselectCurrentItem];
+}
 
-// TODO: delegate
+#pragma mark - LKPMainMenuControllerDelegate
+
+- (void)mainMenuController:(LKPMainMenuController *)mainMenuController
+  didSelectControllerClass:(Class)viewControllerClass
+{
+    if ([viewControllerClass isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *viewController = [[viewControllerClass alloc] init];
+        if (viewController) {
+            [self.navigationController pushViewController:viewController animated:TRUE];
+        }
+    }
+}
 
 #pragma mark - Memory Management
 
