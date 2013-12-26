@@ -69,15 +69,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF5351F1186B2E6C008210D9 /* Model */ = {
+		CF5351F1186B2E6C008210D9 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
+				CFA9B01C1784365600D320ED /* LKPMainViewController.h */,
+				CFA9B01D1784365600D320ED /* LKPMainViewController.m */,
 				CF5351F2186B2E88008210D9 /* LKPMainMenuController.h */,
 				CF5351F3186B2E88008210D9 /* LKPMainMenuController.m */,
 				CF5351F5186B2FF4008210D9 /* LKPMainMenuItem.h */,
 				CF5351F6186B2FF4008210D9 /* LKPMainMenuItem.m */,
 			);
-			name = Model;
+			name = "Main Menu";
+			sourceTree = "<group>";
+		};
+		CF5351FA186C4EE5008210D9 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				CF5351FB186C4EED008210D9 /* Simple Example */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		CF5351FB186C4EED008210D9 /* Simple Example */ = {
+			isa = PBXGroup;
+			children = (
+				CF5351EB186B24C9008210D9 /* LKPSimpleViewController.h */,
+				CF5351EC186B24C9008210D9 /* LKPSimpleViewController.m */,
+				CF5351EE186B2541008210D9 /* LKPSimpleView.h */,
+				CF5351EF186B2541008210D9 /* LKPSimpleView.m */,
+			);
+			name = "Simple Example";
 			sourceTree = "<group>";
 		};
 		CFA9AFF81784365600D320ED = {
@@ -112,17 +133,12 @@
 		CFA9B00A1784365600D320ED /* LayoutKitPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				CF5351F1186B2E6C008210D9 /* Model */,
+				CF5351FA186C4EE5008210D9 /* Examples */,
+				CF5351F1186B2E6C008210D9 /* Main Menu */,
 				CFA9B00B1784365600D320ED /* Supporting Files */,
 				CFA9B0131784365600D320ED /* LKPAppDelegate.h */,
 				CFA9B0141784365600D320ED /* LKPAppDelegate.m */,
-				CFA9B01C1784365600D320ED /* LKPMainViewController.h */,
-				CFA9B01D1784365600D320ED /* LKPMainViewController.m */,
 				CFA47BA618469CB100DDFA75 /* Images.xcassets */,
-				CF5351EB186B24C9008210D9 /* LKPSimpleViewController.h */,
-				CF5351EC186B24C9008210D9 /* LKPSimpleViewController.m */,
-				CF5351EE186B2541008210D9 /* LKPSimpleView.h */,
-				CF5351EF186B2541008210D9 /* LKPSimpleView.m */,
 			);
 			path = LayoutKitPrototype;
 			sourceTree = "<group>";

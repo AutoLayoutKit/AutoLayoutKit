@@ -32,6 +32,19 @@
 
 @implementation LKPSimpleViewController
 
+#pragma mark - Memory Management
+
+- (void)dealloc
+{
+    
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 #pragma mark - Setup & Init
 
 - (id)init
@@ -73,12 +86,6 @@
     LKPSimpleView *view = [[LKPSimpleView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.view = view;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
