@@ -31,7 +31,7 @@
 
 NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
 
-@interface LKPTextFieldView ()
+@interface LKPTextFieldView () <LKPTextViewContainerDelegate>
 
 @property (nonatomic, strong, readwrite) UIScrollView *scrollView;
 
@@ -69,6 +69,13 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
     
     [self setupSubviews];
     [self setupLayout];
+}
+
+#pragma mark - Public API
+
+- (void)clear
+{
+    [self.textViewContainer setText:nil];
 }
 
 #pragma mark - Keyboard Notifications
@@ -117,6 +124,23 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
     }
 }
 
+#pragma mark - LKPTextViewContainerDelegate
+
+- (void)textViewContainer:(LKPTextViewContainer *)textViewContainer
+      cursorDidMoveToRect:(CGRect)rect
+{
+    CGRect scrollRect = [self.scrollView convertRect:rect
+                                        fromView:textViewContainer];
+    [self.scrollView scrollRectToVisible:scrollRect
+                                animated:TRUE];
+}
+
+- (void)textViewContainer:(LKPTextViewContainer *)textViewContainer
+            textDidChange:(NSString *)text
+{
+    
+}
+
 #pragma mark - Setup & Init (Private)
 
 - (void)setupSubviews
@@ -128,6 +152,7 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
     
     self.textViewContainer = [[LKPTextViewContainer alloc] initWithFrame:CGRectZero];
     [self.textViewContainer setBackgroundColor:[UIColor blueColor]];
+    [self.textViewContainer setDelegate:self];
     [self.scrollView addSubview:self.textViewContainer];
 }
 

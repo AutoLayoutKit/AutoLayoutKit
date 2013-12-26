@@ -28,6 +28,8 @@
 
 @interface LKPTextFieldViewController ()
 
+@property (nonatomic, strong, readwrite) UIBarButtonItem *clearButtonItem;
+
 @end
 
 @implementation LKPTextFieldViewController
@@ -77,6 +79,12 @@
 - (void)setup
 {
     self.title = @"Growing TextField Example";
+    
+    self.clearButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Clear"
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:self
+                                                           action:@selector(clearButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = self.clearButtonItem;
 }
 
 #pragma mark - View Lifecycle
@@ -86,6 +94,14 @@
     LKPTextFieldView *view = [[LKPTextFieldView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.view = view;
+}
+
+#pragma mark - Button Target
+
+- (void)clearButtonPressed:(id)sender
+{
+    LKPTextFieldView *view = (LKPTextFieldView *)self.view;
+    [view clear];
 }
 
 @end

@@ -26,4 +26,6 @@
 
 @interface LKPTextFieldView : UIView
 
+- (void)clear;
+
 @end
