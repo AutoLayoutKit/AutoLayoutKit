@@ -25,8 +25,10 @@
 #import "LKPMainMenuItem.h"
 
 #import "LKPSimpleViewController.h"
+#import "LKPTextFieldViewController.h"
 
 NSString * const kLKPsimpleMenuItemIdentifier = @"LKPsimpleMenuItemIdentifier";
+NSString * const kLKPtextfieldMenuItemIdentifier = @"LKPtextfieldMenuItemIdentifier";
 
 @implementation LKPMainMenuItem
 
@@ -36,6 +38,15 @@ NSString * const kLKPsimpleMenuItemIdentifier = @"LKPsimpleMenuItemIdentifier";
     item.title = @"Simple Button Example";
     item.identifier = kLKPsimpleMenuItemIdentifier;
     item.controllerClass = [LKPSimpleViewController class];
+    return item;
+}
+
++ (instancetype)textfieldMenuItem
+{
+    LKPMainMenuItem *item = [[LKPMainMenuItem alloc] init];
+    item.title = @"TextField Example";
+    item.identifier = kLKPtextfieldMenuItemIdentifier;
+    item.controllerClass = [LKPTextFieldViewController class];
     return item;
 }
 

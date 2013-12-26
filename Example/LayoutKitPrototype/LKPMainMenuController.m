@@ -74,6 +74,9 @@ NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifi
     item = [LKPMainMenuItem simpleMenuItem];
     [menuItems addObject:item];
     
+    item = [LKPMainMenuItem textfieldMenuItem];
+    [menuItems addObject:item];
+    
     self.menuItems = [NSArray arrayWithArray:menuItems];
 }
 

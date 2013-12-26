@@ -33,5 +33,6 @@ FOUNDATION_EXTERN NSString * const kLKPsimpleMenuItemIdentifier;
 @property (nonatomic, assign) Class controllerClass;
 
 + (instancetype)simpleMenuItem;
++ (instancetype)textfieldMenuItem;
 
 @end

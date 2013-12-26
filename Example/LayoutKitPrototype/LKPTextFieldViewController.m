@@ -24,6 +24,8 @@
 
 #import "LKPTextFieldViewController.h"
 
+#import "LKPTextFieldView.h"
+
 @interface LKPTextFieldViewController ()
 
 @end
@@ -74,14 +76,14 @@
 
 - (void)setup
 {
-    self.title = @"TextField Example";
+    self.title = @"Growing TextField Example";
 }
 
 #pragma mark - View Lifecycle
 
 - (void)loadView
 {
-    LKPSimpleView *view = [[LKPSimpleView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    LKPTextFieldView *view = [[LKPTextFieldView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.view = view;
 }
