@@ -12,6 +12,8 @@
 		CF5351F0186B2541008210D9 /* LKPSimpleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351EF186B2541008210D9 /* LKPSimpleView.m */; };
 		CF5351F8186B49D3008210D9 /* LKPMainMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351F6186B2FF4008210D9 /* LKPMainMenuItem.m */; };
 		CF5351F9186B49E7008210D9 /* LKPMainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351F3186B2E88008210D9 /* LKPMainMenuController.m */; };
+		CF5351FF186C51A0008210D9 /* LKPTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351FE186C51A0008210D9 /* LKPTextFieldViewController.m */; };
+		CF535202186C520D008210D9 /* LKPTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF535201186C520D008210D9 /* LKPTextFieldView.m */; };
 		CFA47BA718469CB100DDFA75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA47BA618469CB100DDFA75 /* Images.xcassets */; };
 		CFA9B0051784365600D320ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9B0041784365600D320ED /* UIKit.framework */; };
 		CFA9B0071784365600D320ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9B0061784365600D320ED /* Foundation.framework */; };
@@ -35,6 +37,10 @@
 		CF5351F3186B2E88008210D9 /* LKPMainMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPMainMenuController.m; sourceTree = "<group>"; };
 		CF5351F5186B2FF4008210D9 /* LKPMainMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPMainMenuItem.h; sourceTree = "<group>"; };
 		CF5351F6186B2FF4008210D9 /* LKPMainMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPMainMenuItem.m; sourceTree = "<group>"; };
+		CF5351FD186C51A0008210D9 /* LKPTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPTextFieldViewController.h; sourceTree = "<group>"; };
+		CF5351FE186C51A0008210D9 /* LKPTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPTextFieldViewController.m; sourceTree = "<group>"; };
+		CF535200186C520D008210D9 /* LKPTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPTextFieldView.h; sourceTree = "<group>"; };
+		CF535201186C520D008210D9 /* LKPTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPTextFieldView.m; sourceTree = "<group>"; };
 		CFA47BA618469CB100DDFA75 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CFA9B0011784365600D320ED /* LayoutKitPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA9B0041784365600D320ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -86,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				CF5351FB186C4EED008210D9 /* Simple Example */,
+				CF5351FC186C515E008210D9 /* TextField Example */,
 			);
 			name = Examples;
 			sourceTree = "<group>";
@@ -99,6 +106,17 @@
 				CF5351EF186B2541008210D9 /* LKPSimpleView.m */,
 			);
 			name = "Simple Example";
+			sourceTree = "<group>";
+		};
+		CF5351FC186C515E008210D9 /* TextField Example */ = {
+			isa = PBXGroup;
+			children = (
+				CF5351FD186C51A0008210D9 /* LKPTextFieldViewController.h */,
+				CF5351FE186C51A0008210D9 /* LKPTextFieldViewController.m */,
+				CF535200186C520D008210D9 /* LKPTextFieldView.h */,
+				CF535201186C520D008210D9 /* LKPTextFieldView.m */,
+			);
+			name = "TextField Example";
 			sourceTree = "<group>";
 		};
 		CFA9AFF81784365600D320ED = {
@@ -259,12 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF535202186C520D008210D9 /* LKPTextFieldView.m in Sources */,
 				CF5351F0186B2541008210D9 /* LKPSimpleView.m in Sources */,
 				CF5351ED186B24C9008210D9 /* LKPSimpleViewController.m in Sources */,
 				CFA9B0111784365600D320ED /* main.m in Sources */,
 				CFA9B0151784365600D320ED /* LKPAppDelegate.m in Sources */,
 				CFA9B01E1784365600D320ED /* LKPMainViewController.m in Sources */,
 				CF5351F8186B49D3008210D9 /* LKPMainMenuItem.m in Sources */,
+				CF5351FF186C51A0008210D9 /* LKPTextFieldViewController.m in Sources */,
 				CF5351F9186B49E7008210D9 /* LKPMainMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
