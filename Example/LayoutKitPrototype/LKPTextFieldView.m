@@ -24,7 +24,14 @@
 
 #import "LKPTextFieldView.h"
 
+#import "AutoLayoutKit.h"
+#import <QuartzCore/QuartzCore.h>
+
+NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
+
 @interface LKPTextFieldView ()
+
+@property (nonatomic, strong, readwrite) UIScrollView *scrollView;
 
 @end
 
@@ -50,6 +57,8 @@
 
 - (void)setup
 {
+    [self setBackgroundColor:[UIColor whiteColor]];
+    
     [self setupSubviews];
     [self setupLayout];
 }
@@ -58,12 +67,21 @@
 
 - (void)setupSubviews
 {
-    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    [self.scrollView.layer setBorderColor:[UIColor redColor].CGColor];
+    [self.scrollView.layer setBorderWidth:1.f];
+    [self addSubview:self.scrollView];
 }
 
 - (void)setupLayout
 {
-    
+    [ALKConstraints layout:self.scrollView do:^(ALKConstraints *c) {
+        [c make:ALKTop      equalTo:self s:ALKTop];
+        [c make:ALKLeft     equalTo:self s:ALKLeft];
+        [c make:ALKRight    equalTo:self s:ALKRight];
+        [c make:ALKBottom   equalTo:self s:ALKBottom
+           name:kLKPTextFieldViewKeyboardHeight];
+    }];
 }
 
 @end
