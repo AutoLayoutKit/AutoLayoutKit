@@ -89,7 +89,7 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
   CGRect frame = [frameValue CGRectValue];
   NSTimeInterval duration = [durationNumber doubleValue];
   
-  [self setKeyboardHeight:frame.size.height
+  [self setKeyboardHeight:[self effectiveKeyboardHeight:frame]
                  animated:TRUE
         animationDuration:duration];
 }
@@ -124,6 +124,17 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
   }
 }
 
+- (CGFloat)effectiveKeyboardHeight:(CGRect)frame
+{
+  CGFloat height = frame.size.height;
+  
+  if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+    height = frame.size.width;
+  }
+  
+  return height;
+}
+
 #pragma mark - LKPTextViewContainerDelegate
 
 - (void)textViewContainer:(LKPTextViewContainer *)textViewContainer
@@ -131,7 +142,7 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
 {
   CGRect scrollRect = [self.scrollView convertRect:rect
                                           fromView:textViewContainer];
-  
+  [self.scrollView setContentSize:textViewContainer.intrinsicContentSize];
   [self.scrollView scrollRectToVisible:scrollRect
                               animated:TRUE];
 }
@@ -139,7 +150,7 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
 - (void)textViewContainer:(LKPTextViewContainer *)textViewContainer
             textDidChange:(NSString *)text
 {
-  
+  [self.scrollView setContentSize:textViewContainer.intrinsicContentSize];
 }
 
 #pragma mark - Setup & Init (Private)
@@ -149,6 +160,7 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
   self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
   [self.scrollView.layer setBorderColor:[UIColor redColor].CGColor];
   [self.scrollView.layer setBorderWidth:1.f];
+  [self.scrollView setAlwaysBounceVertical:TRUE];
   [self addSubview:self.scrollView];
   
   self.textViewContainer = [[LKPTextViewContainer alloc] initWithFrame:CGRectZero];
