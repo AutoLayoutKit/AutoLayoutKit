@@ -47,81 +47,81 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
 
 - (void)dealloc
 {
-    [self tearDownNotifications];
+  [self tearDownNotifications];
 }
 
 #pragma mark - Setup & Init
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithFrame:frame];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (void)setup
 {
-    [self setBackgroundColor:[UIColor whiteColor]];
-    [self setRegistered:FALSE];
-    [self setupNotifications];
-    
-    [self setupSubviews];
-    [self setupLayout];
+  [self setBackgroundColor:[UIColor whiteColor]];
+  [self setRegistered:FALSE];
+  [self setupNotifications];
+  
+  [self setupSubviews];
+  [self setupLayout];
 }
 
 #pragma mark - Public API
 
 - (void)clear
 {
-    [self.textViewContainer setText:nil];
+  [self.textViewContainer setText:nil];
 }
 
 #pragma mark - Keyboard Notifications
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    NSDictionary *ui = notification.userInfo;
-    NSValue *frameValue = ui[UIKeyboardFrameEndUserInfoKey];
-    NSNumber *durationNumber = ui[UIKeyboardAnimationDurationUserInfoKey];
-    
-    CGRect frame = [frameValue CGRectValue];
-    NSTimeInterval duration = [durationNumber doubleValue];
-    
-    [self setKeyboardHeight:frame.size.height
-                   animated:TRUE
-          animationDuration:duration];
+  NSDictionary *ui = notification.userInfo;
+  NSValue *frameValue = ui[UIKeyboardFrameEndUserInfoKey];
+  NSNumber *durationNumber = ui[UIKeyboardAnimationDurationUserInfoKey];
+  
+  CGRect frame = [frameValue CGRectValue];
+  NSTimeInterval duration = [durationNumber doubleValue];
+  
+  [self setKeyboardHeight:frame.size.height
+                 animated:TRUE
+        animationDuration:duration];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    NSDictionary *ui = notification.userInfo;
-    NSNumber *durationNumber = ui[UIKeyboardAnimationDurationUserInfoKey];
-    
-    NSTimeInterval duration = [durationNumber doubleValue];
-    
-    [self setKeyboardHeight:0.f
-                   animated:TRUE
-          animationDuration:duration];
+  NSDictionary *ui = notification.userInfo;
+  NSNumber *durationNumber = ui[UIKeyboardAnimationDurationUserInfoKey];
+  
+  NSTimeInterval duration = [durationNumber doubleValue];
+  
+  [self setKeyboardHeight:0.f
+                 animated:TRUE
+        animationDuration:duration];
 }
 
 - (void)setKeyboardHeight:(CGFloat)height
                  animated:(BOOL)animated
         animationDuration:(NSTimeInterval)animationDuration
 {
-    NSLayoutConstraint *c = [self alk_constraintWithName:kLKPTextFieldViewKeyboardHeight];
-    c.constant = (-1) * height;
-    [self setNeedsUpdateConstraints];
-    
-    if (animated) {
-        [UIView animateWithDuration:animationDuration
-                         animations:^{
-                             [self layoutIfNeeded];
-                         }];
-    } else {
-        [self layoutIfNeeded];
-    }
+  NSLayoutConstraint *c = [self alk_constraintWithName:kLKPTextFieldViewKeyboardHeight];
+  c.constant = (-1) * height;
+  [self setNeedsUpdateConstraints];
+  
+  if (animated) {
+    [UIView animateWithDuration:animationDuration
+                     animations:^{
+                       [self layoutIfNeeded];
+                     }];
+  } else {
+    [self layoutIfNeeded];
+  }
 }
 
 #pragma mark - LKPTextViewContainerDelegate
@@ -129,85 +129,86 @@ NSString * const kLKPTextFieldViewKeyboardHeight   = @"keyboardHeight";
 - (void)textViewContainer:(LKPTextViewContainer *)textViewContainer
       cursorDidMoveToRect:(CGRect)rect
 {
-    CGRect scrollRect = [self.scrollView convertRect:rect
-                                        fromView:textViewContainer];
-    [self.scrollView scrollRectToVisible:scrollRect
-                                animated:TRUE];
+  CGRect scrollRect = [self.scrollView convertRect:rect
+                                          fromView:textViewContainer];
+  
+  [self.scrollView scrollRectToVisible:scrollRect
+                              animated:TRUE];
 }
 
 - (void)textViewContainer:(LKPTextViewContainer *)textViewContainer
             textDidChange:(NSString *)text
 {
-    
+  
 }
 
 #pragma mark - Setup & Init (Private)
 
 - (void)setupSubviews
 {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    [self.scrollView.layer setBorderColor:[UIColor redColor].CGColor];
-    [self.scrollView.layer setBorderWidth:1.f];
-    [self addSubview:self.scrollView];
-    
-    self.textViewContainer = [[LKPTextViewContainer alloc] initWithFrame:CGRectZero];
-    [self.textViewContainer setBackgroundColor:[UIColor blueColor]];
-    [self.textViewContainer setDelegate:self];
-    [self.scrollView addSubview:self.textViewContainer];
+  self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+  [self.scrollView.layer setBorderColor:[UIColor redColor].CGColor];
+  [self.scrollView.layer setBorderWidth:1.f];
+  [self addSubview:self.scrollView];
+  
+  self.textViewContainer = [[LKPTextViewContainer alloc] initWithFrame:CGRectZero];
+  [self.textViewContainer setBackgroundColor:[UIColor blueColor]];
+  [self.textViewContainer setDelegate:self];
+  [self.scrollView addSubview:self.textViewContainer];
 }
 
 - (void)setupLayout
 {
-    [ALKConstraints layout:self.scrollView do:^(ALKConstraints *c) {
-        [c make:ALKTop      equalTo:self s:ALKTop];
-        [c make:ALKLeft     equalTo:self s:ALKLeft];
-        [c make:ALKRight    equalTo:self s:ALKRight];
-        [c make:ALKBottom   equalTo:self s:ALKBottom
-           name:kLKPTextFieldViewKeyboardHeight];
-    }];
-
-    [ALKConstraints layout:self.textViewContainer do:^(ALKConstraints *c) {
-        [c make:ALKTop      equalTo:self.scrollView s:ALKTop];
-        [c make:ALKWidth    equalTo:self.scrollView s:ALKWidth];
-        [c make:ALKCenterX  equalTo:self.scrollView s:ALKCenterX];
-        [c make:ALKBottom   equalTo:self.scrollView s:ALKBottom];
-    }];
+  [ALKConstraints layout:self.scrollView do:^(ALKConstraints *c) {
+    [c make:ALKTop      equalTo:self s:ALKTop];
+    [c make:ALKLeft     equalTo:self s:ALKLeft];
+    [c make:ALKRight    equalTo:self s:ALKRight];
+    [c make:ALKBottom   equalTo:self s:ALKBottom
+       name:kLKPTextFieldViewKeyboardHeight];
+  }];
+  
+  [ALKConstraints layout:self.textViewContainer do:^(ALKConstraints *c) {
+    [c make:ALKTop      equalTo:self.scrollView s:ALKTop];
+    [c make:ALKWidth    equalTo:self.scrollView s:ALKWidth];
+    [c make:ALKCenterX  equalTo:self.scrollView s:ALKCenterX];
+    [c make:ALKBottom   equalTo:self.scrollView s:ALKBottom];
+  }];
 }
 
 - (void)setupNotifications
 {
-    if (self.registered) { return; }
-    
-    self.registered = TRUE;
-    
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
-    [nc addObserver:self
-           selector:@selector(keyboardWillShow:)
-               name:UIKeyboardWillShowNotification
-             object:nil];
-    
-    [nc addObserver:self
-           selector:@selector(keyboardWillHide:)
-               name:UIKeyboardWillHideNotification
-             object:nil];
+  if (self.registered) { return; }
+  
+  self.registered = TRUE;
+  
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  
+  [nc addObserver:self
+         selector:@selector(keyboardWillShow:)
+             name:UIKeyboardWillShowNotification
+           object:nil];
+  
+  [nc addObserver:self
+         selector:@selector(keyboardWillHide:)
+             name:UIKeyboardWillHideNotification
+           object:nil];
 }
 
 - (void)tearDownNotifications
 {
-    if (!self.registered) { return; }
-    
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
-    [nc removeObserver:self
-                  name:UIKeyboardWillShowNotification
-                object:nil];
-    
-    [nc removeObserver:self
-                  name:UIKeyboardWillHideNotification
-                object:nil];
-    
-    self.registered = FALSE;
+  if (!self.registered) { return; }
+  
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  
+  [nc removeObserver:self
+                name:UIKeyboardWillShowNotification
+              object:nil];
+  
+  [nc removeObserver:self
+                name:UIKeyboardWillHideNotification
+              object:nil];
+  
+  self.registered = FALSE;
 }
 
 @end

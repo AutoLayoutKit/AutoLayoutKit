@@ -34,20 +34,20 @@ NSString * const kLKPtextfieldMenuItemIdentifier = @"LKPtextfieldMenuItemIdentif
 
 + (instancetype)simpleMenuItem
 {
-    LKPMainMenuItem *item = [[LKPMainMenuItem alloc] init];
-    item.title = @"Simple Button Example";
-    item.identifier = kLKPsimpleMenuItemIdentifier;
-    item.controllerClass = [LKPSimpleViewController class];
-    return item;
+  LKPMainMenuItem *item = [[LKPMainMenuItem alloc] init];
+  item.title = @"Simple Button Example";
+  item.identifier = kLKPsimpleMenuItemIdentifier;
+  item.controllerClass = [LKPSimpleViewController class];
+  return item;
 }
 
 + (instancetype)textfieldMenuItem
 {
-    LKPMainMenuItem *item = [[LKPMainMenuItem alloc] init];
-    item.title = @"TextField Example";
-    item.identifier = kLKPtextfieldMenuItemIdentifier;
-    item.controllerClass = [LKPTextFieldViewController class];
-    return item;
+  LKPMainMenuItem *item = [[LKPMainMenuItem alloc] init];
+  item.title = @"TextField Example";
+  item.identifier = kLKPtextfieldMenuItemIdentifier;
+  item.controllerClass = [LKPTextFieldViewController class];
+  return item;
 }
 
 @end

@@ -36,56 +36,56 @@
 
 - (void)dealloc
 {
-    
+  
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Setup & Init
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (void)setup
 {
-    self.title = @"Simple Button Example";
+  self.title = @"Simple Button Example";
 }
 
 #pragma mark - View Lifecycle
 
 - (void)loadView
 {
-    LKPSimpleView *view = [[LKPSimpleView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.view = view;
+  LKPSimpleView *view = [[LKPSimpleView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+  self.view = view;
 }
 
 @end

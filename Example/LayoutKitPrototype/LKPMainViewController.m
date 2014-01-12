@@ -39,71 +39,71 @@
 
 - (void)dealloc
 {
-    
+  
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Setup & Init
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (void)setup
 {
-    self.title = @"AutoLayoutKit";
-    
-    // Main Menu
-    self.mainMenuController = [[LKPMainMenuController alloc] init];
-    self.mainMenuController.delegate = self;
+  self.title = @"AutoLayoutKit";
+  
+  // Main Menu
+  self.mainMenuController = [[LKPMainMenuController alloc] init];
+  self.mainMenuController.delegate = self;
 }
 
 #pragma mark - View Lifecycle
 
 - (void)loadView
 {
-    CGRect bounds = [[UIScreen mainScreen] bounds];
-    
-    self.mainMenuTableView = [[UITableView alloc] initWithFrame:bounds
-                                                          style:UITableViewStylePlain];
-    self.mainMenuTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    [self.mainMenuController setTableView:self.mainMenuTableView];
-    
-    self.view = self.mainMenuTableView;
+  CGRect bounds = [[UIScreen mainScreen] bounds];
+  
+  self.mainMenuTableView = [[UITableView alloc] initWithFrame:bounds
+                                                        style:UITableViewStylePlain];
+  self.mainMenuTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+  [self.mainMenuController setTableView:self.mainMenuTableView];
+  
+  self.view = self.mainMenuTableView;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    [self.mainMenuController deselectCurrentItem];
+  [super viewDidAppear:animated];
+  [self.mainMenuController deselectCurrentItem];
 }
 
 #pragma mark - LKPMainMenuControllerDelegate
@@ -111,12 +111,12 @@
 - (void)mainMenuController:(LKPMainMenuController *)mainMenuController
   didSelectControllerClass:(Class)viewControllerClass
 {
-    if ([viewControllerClass isSubclassOfClass:[UIViewController class]]) {
-        UIViewController *viewController = [[viewControllerClass alloc] init];
-        if (viewController) {
-            [self.navigationController pushViewController:viewController animated:TRUE];
-        }
+  if ([viewControllerClass isSubclassOfClass:[UIViewController class]]) {
+    UIViewController *viewController = [[viewControllerClass alloc] init];
+    if (viewController) {
+      [self.navigationController pushViewController:viewController animated:TRUE];
     }
+  }
 }
 
 @end

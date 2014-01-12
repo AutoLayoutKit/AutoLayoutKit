@@ -42,89 +42,89 @@ NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifi
 
 - (void)dealloc
 {
-    [self tearDownTableView];
+  [self tearDownTableView];
 }
 
 #pragma mark - Init
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithTableView:(UITableView *)tableView
 {
-    self = [super init];
-    if (self) {
-        [self setup];
-        self.tableView = tableView;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    [self setup];
+    self.tableView = tableView;
+  }
+  return self;
 }
 
 - (void)setup
 {
-    NSMutableArray *menuItems = [NSMutableArray arrayWithCapacity:1];
-    LKPMainMenuItem *item;
-    
-    item = [LKPMainMenuItem simpleMenuItem];
-    [menuItems addObject:item];
-    
-    item = [LKPMainMenuItem textfieldMenuItem];
-    [menuItems addObject:item];
-    
-    self.menuItems = [NSArray arrayWithArray:menuItems];
+  NSMutableArray *menuItems = [NSMutableArray arrayWithCapacity:1];
+  LKPMainMenuItem *item;
+  
+  item = [LKPMainMenuItem simpleMenuItem];
+  [menuItems addObject:item];
+  
+  item = [LKPMainMenuItem textfieldMenuItem];
+  [menuItems addObject:item];
+  
+  self.menuItems = [NSArray arrayWithArray:menuItems];
 }
 
 #pragma mark - Selection
 
 - (void)deselectCurrentItem
 {
-    if (self.selectedItem) {
-        NSUInteger row = [self.menuItems indexOfObject:self.selectedItem];
-        if (row != NSNotFound) {
-            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:row
-                                                                inSection:0];
-            [self.tableView deselectRowAtIndexPath:selectedIndexPath
-                                          animated:TRUE];
-        }
+  if (self.selectedItem) {
+    NSUInteger row = [self.menuItems indexOfObject:self.selectedItem];
+    if (row != NSNotFound) {
+      NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:row
+                                                          inSection:0];
+      [self.tableView deselectRowAtIndexPath:selectedIndexPath
+                                    animated:TRUE];
     }
+  }
 }
 
 #pragma mark - UITableView
 
 - (void)setTableView:(UITableView *)tableView
 {
-    if (_tableView) {
-        [self tearDownTableView];
-        _tableView = nil;
-    }
-    
-    if (_tableView == nil) {
-        _tableView = tableView;
-        [self setupTableView];
-    }
+  if (_tableView) {
+    [self tearDownTableView];
+    _tableView = nil;
+  }
+  
+  if (_tableView == nil) {
+    _tableView = tableView;
+    [self setupTableView];
+  }
 }
 
 #pragma mark - UITableView (internal)
 
 - (void)setupTableView
 {
-    [_tableView setDataSource:self];
-    [_tableView setDelegate:self];
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLKPMainMenuMainCellIdentifier];
+  [_tableView setDataSource:self];
+  [_tableView setDelegate:self];
+  [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLKPMainMenuMainCellIdentifier];
 }
 
 - (void)tearDownTableView
 {
-    [_tableView setDataSource:nil];
-    [_tableView setDelegate:nil];
-    
-    [self setSelectedItem:nil];
+  [_tableView setDataSource:nil];
+  [_tableView setDelegate:nil];
+  
+  [self setSelectedItem:nil];
 }
 
 #pragma mark - UITableViewDataSource
@@ -132,34 +132,34 @@ NSString * const kLKPMainMenuMainCellIdentifier = @"kLKPMainMenuMainCellIdentifi
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [self.menuItems count];
+  return [self.menuItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKPMainMenuMainCellIdentifier];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    
-    LKPMainMenuItem *item = self.menuItems[indexPath.row];
-    
-    [cell.textLabel setText:item.title];
-    
-    return cell;
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLKPMainMenuMainCellIdentifier];
+  [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+  
+  LKPMainMenuItem *item = self.menuItems[indexPath.row];
+  
+  [cell.textLabel setText:item.title];
+  
+  return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LKPMainMenuItem *item = self.menuItems[indexPath.row];
-    
-    if (self.delegate) {
-        [self.delegate mainMenuController:self
-                 didSelectControllerClass:item.controllerClass];
-    }
-    
-    self.selectedItem = item;
+  LKPMainMenuItem *item = self.menuItems[indexPath.row];
+  
+  if (self.delegate) {
+    [self.delegate mainMenuController:self
+             didSelectControllerClass:item.controllerClass];
+  }
+  
+  self.selectedItem = item;
 }
 
 @end

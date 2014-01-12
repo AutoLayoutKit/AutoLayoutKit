@@ -38,70 +38,70 @@
 
 - (void)dealloc
 {
-    
+  
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Setup & Init
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self setup];
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    [self setup];
+  }
+  return self;
 }
 
 - (void)setup
 {
-    self.title = @"Growing TextField Example";
-    
-    self.clearButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Clear"
-                                                            style:UIBarButtonItemStylePlain
-                                                           target:self
-                                                           action:@selector(clearButtonPressed:)];
-    self.navigationItem.rightBarButtonItem = self.clearButtonItem;
+  self.title = @"Growing TextField Example";
+  
+  self.clearButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Clear"
+                                                          style:UIBarButtonItemStylePlain
+                                                         target:self
+                                                         action:@selector(clearButtonPressed:)];
+  self.navigationItem.rightBarButtonItem = self.clearButtonItem;
 }
 
 #pragma mark - View Lifecycle
 
 - (void)loadView
 {
-    LKPTextFieldView *view = [[LKPTextFieldView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.view = view;
+  LKPTextFieldView *view = [[LKPTextFieldView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+  self.view = view;
 }
 
 #pragma mark - Button Target
 
 - (void)clearButtonPressed:(id)sender
 {
-    LKPTextFieldView *view = (LKPTextFieldView *)self.view;
-    [view clear];
+  LKPTextFieldView *view = (LKPTextFieldView *)self.view;
+  [view clear];
 }
 
 @end
