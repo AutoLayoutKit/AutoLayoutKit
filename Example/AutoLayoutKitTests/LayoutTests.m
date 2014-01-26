@@ -707,203 +707,518 @@ NSUInteger const tag = 1234;
   }
 }
 
-/*
-// MAKE (LT)
- 
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant
-on:(UIView *)targetView
-name:(NSString *)name;
- 
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant
-on:(UIView *)targetView;
- 
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute;
-  
-  - (void)make:(ALKAttribute)attribute
-lessThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-name:(NSString *)name;
-  
-// MAKE (GT)
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-on:(UIView *)targetView;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-on:(UIView *)targetView
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-plus:(CGFloat)constant
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-plus:(CGFloat)constant
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-times:(CGFloat)multiplier
-name:(NSString *)name;
-  
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute;
+#pragma mark - Layout Tests (Make/LT)
 
-  - (void)make:(ALKAttribute)attribute
-greaterThan:(id)relatedItem
-s:(ALKAttribute)relatedAttribute
-name:(NSString *)name;
+- (void)testMakeLTMultiConst
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier plus:constant];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:constant];
+  }
+}
 
- */
+- (void)testMakeLTMultiConstTV
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier plus:constant on:parentView];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTMultiConstTVName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier plus:constant on:parentView name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTConstTV
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute plus:constant on:parentView];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTConstTVName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute plus:constant on:parentView name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTMultiTV
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier on:parentView];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLTMultiTVName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier on:parentView name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLTTV
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute on:parentView];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLTTVName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute on:parentView name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLTMultiConstName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier plus:constant name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTConst
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute plus:constant];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTConstName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat constant                  = (CGFloat)[testField[2] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute plus:constant name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:constant];
+  }
+}
+
+- (void)testMakeLTMulti
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLTMultiName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    CGFloat multiplier                = (CGFloat)[testField[3] floatValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute times:multiplier name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:multiplier
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLT
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[self firstConstraint:parentView]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:0.f];
+  }
+}
+
+- (void)testMakeLTName
+{
+  NSArray *testFields = [self makeTestFields];
+  
+  for (NSArray *testField in testFields) {
+    UIView *parentView = [self newTwoTierViewHierarchy];
+    UIView *childView = [parentView viewWithTag:tag];
+    
+    ALKAttribute alkAttribute         = (ALKAttribute)[testField[0] integerValue];
+    NSLayoutAttribute uikitAttribute  = (NSLayoutAttribute)[testField[1] integerValue];
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+      [c make:alkAttribute lessThan:parentView s:alkAttribute name:@"name"];
+      dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
+    [self checkConstraint:[parentView alk_constraintWithName:@"name"]
+                 withItem:childView
+                attribute:uikitAttribute
+                relatedBy:NSLayoutRelationLessThanOrEqual
+                   toItem:parentView
+                attribute:uikitAttribute
+               multiplier:1.f
+                 constant:0.f];
+  }
+}
  
 @end
