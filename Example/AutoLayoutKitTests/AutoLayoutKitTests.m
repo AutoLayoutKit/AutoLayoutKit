@@ -25,7 +25,7 @@
 #import <XCTest/XCTest.h>
 #import "AutoLayoutKit.h"
 
-NSString * const kALKTestConstraint = @"ALKTestConstraint";
+NSString * const kALKBaseTestConstraint = @"ALKTestConstraint";
 
 @interface AutoLayoutKitTests : XCTestCase
 
@@ -125,10 +125,10 @@ NSString * const kALKTestConstraint = @"ALKTestConstraint";
   CGFloat constant = 111.f;
   
   [ALKConstraints layout:view do:^(ALKConstraints *c) {
-    [c set:ALKWidth to:constant name:kALKTestConstraint];
+    [c set:ALKWidth to:constant name:kALKBaseTestConstraint];
   }];
   
-  NSLayoutConstraint *constraint = [view alk_constraintWithName:kALKTestConstraint];
+  NSLayoutConstraint *constraint = [view alk_constraintWithName:kALKBaseTestConstraint];
   
   XCTAssertNotNil(constraint, @"");
   XCTAssertEqualWithAccuracy(constraint.constant, constant, 0.001, @"");
@@ -142,7 +142,7 @@ NSString * const kALKTestConstraint = @"ALKTestConstraint";
     [c set:ALKWidth to:111.f];
   }];
   
-  XCTAssertNil([view alk_constraintWithName:kALKTestConstraint], @"");
+  XCTAssertNil([view alk_constraintWithName:kALKBaseTestConstraint], @"");
 }
 
 - (void)testNotPossibleToAddTwoConstraintsWithTheSameName
@@ -152,36 +152,23 @@ NSString * const kALKTestConstraint = @"ALKTestConstraint";
   CGFloat constant2 = 222.f;
   
   [ALKConstraints layout:view do:^(ALKConstraints *c) {
-    [c set:ALKWidth to:constant1 name:kALKTestConstraint];
+    [c set:ALKWidth to:constant1 name:kALKBaseTestConstraint];
   }];
   
-  NSLayoutConstraint *constraint = [view alk_constraintWithName:kALKTestConstraint];
+  NSLayoutConstraint *constraint = [view alk_constraintWithName:kALKBaseTestConstraint];
   
   XCTAssertNotNil(constraint, @"");
   XCTAssertEqualWithAccuracy(constraint.constant, constant1, 0.001, @"");
   
   [ALKConstraints layout:view do:^(ALKConstraints *c) {
-    [c set:ALKHeight to:constant2 name:kALKTestConstraint];
+    [c set:ALKHeight to:constant2 name:kALKBaseTestConstraint];
   }];
   
-  constraint = [view alk_constraintWithName:kALKTestConstraint];
+  constraint = [view alk_constraintWithName:kALKBaseTestConstraint];
   
   XCTAssertNotNil(constraint, @"");
   XCTAssertEqualWithAccuracy(constraint.constant, constant1, 0.001, @"");
   XCTAssertNotEqualWithAccuracy(constraint.constant, constant2, 0.001, @"");
 }
-
-#pragma mark - Layout Tests (SET)
-
-//- (void)testLayout
-//{
-//  UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
-//  
-//  [ALKConstraints layout:view do:^(ALKConstraints *c) {
-//    [c set:ALKWidth to:100.f];
-//  }];
-//  
-//  [view.constraints count]
-//}
 
 @end
