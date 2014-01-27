@@ -2,6 +2,7 @@
 
 [![Version](https://cocoapod-badges.herokuapp.com/v/AutoLayoutKit/badge.png)](http://cocoadocs.org/docsets/AutoLayoutKit)
 [![Platform](https://cocoapod-badges.herokuapp.com/p/AutoLayoutKit/badge.png)](http://cocoadocs.org/docsets/AutoLayoutKit)
+[![Build Status](https://travis-ci.org/floriankrueger/AutoLayoutKit.png?branch=master)](https://travis-ci.org/floriankrueger/AutoLayoutKit)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/autolayoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/c7369c0e37dfc2c4abd9d34a4f755453 "githalytics.com")](http://githalytics.com/floriankrueger/AutoLayoutKit)
 
