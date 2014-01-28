@@ -143,6 +143,103 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
 - (id)initWithView:(UIView *)view;
 
 ////////////////////////////////////////////////////////////////////////////////
+/// @name Cofiguring the ALKConstrain Priorities
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ @brief Sets the priority of all upcoming `ALKConstraints` to `priority`.
+ 
+ By default, all created constraints are `UILayoutPriorityRequired`.
+ 
+ Because priorities must be set on `UILayoutConstraint`s before they are added
+ to any view, the priority parameter has to be set before the constraints are
+ created. This way you might also "group" your constraints based on their 
+ priority. All constraints you create *after* you've called this method will 
+ have the changed priority value until you reset the priority to 1000.
+ 
+    [ALKConstraints layout:self.optionA do:^(ALKConstraints *c) {
+      // this constraint has a priority of 1000 (required)
+      [c set:ALKHeight to:60.f name:kLKHeight];
+ 
+      [c setPriority:500];
+ 
+      // this constraint has a priority of 500
+      [c set:ALKWidth to:60.f name:kLKWidth];
+    }];
+ 
+ @param priority A `UILayoutPriority` (a.k.a. `float`) between 0 and
+ UILayoutPriorityRequired (1000).
+ 
+ @see -setPriorityRequired
+ @see -setPriorityDefaultHigh
+ @see -setPriorityDefaultLow
+ @see -setPriorityFittingSizeLevel
+ 
+ @since 0.5.0
+ */
+- (void)setPriority:(UILayoutPriority)priority;
+
+/**
+ @brief Sets the priority of all upcoming `ALKConstraints` to 
+ `UILayoutPriorityRequired`.
+ 
+ This is the default setting.
+ 
+ @see -setPriority:
+ @see -setPriorityDefaultHigh
+ @see -setPriorityDefaultLow
+ @see -setPriorityFittingSizeLevel
+ 
+ @since 0.5.0
+ */
+- (void)setPriorityRequired;
+
+/**
+ @brief Sets the priority of all upcoming `ALKConstraints` to
+ `UILayoutPriorityDefaultHigh`.
+ 
+ This equals a value of 750.
+ 
+ @see -setPriorityRequired
+ @see -setPriority:
+ @see -setPriorityDefaultLow
+ @see -setPriorityFittingSizeLevel
+ 
+ @since 0.5.0
+ */
+- (void)setPriorityDefaultHigh;
+
+/**
+ @brief Sets the priority of all upcoming `ALKConstraints` to
+ `UILayoutPriorityDefaultLow`.
+ 
+ This equals a value of 250.
+ 
+ @see -setPriorityRequired
+ @see -setPriorityDefaultHigh
+ @see -setPriority:
+ @see -setPriorityFittingSizeLevel
+ 
+ @since 0.5.0
+ */
+- (void)setPriorityDefaultLow;
+
+/**
+ @brief Sets the priority of all upcoming `ALKConstraints` to
+ `UILayoutPriorityFittingSizeLevel`.
+ 
+ This equals a value of 50.
+ 
+ @see -setPriorityRequired
+ @see -setPriorityDefaultHigh
+ @see -setPriorityDefaultLow
+ @see -setPriority:
+ 
+ @since 0.5.0
+ */
+- (void)setPriorityFittingSizeLevel;
+
+////////////////////////////////////////////////////////////////////////////////
 /// @name Setting Unrelated Constraints
 ////////////////////////////////////////////////////////////////////////////////
 

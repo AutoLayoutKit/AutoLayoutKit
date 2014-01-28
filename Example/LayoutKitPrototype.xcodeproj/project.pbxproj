@@ -16,6 +16,7 @@
 		CF5351FF186C51A0008210D9 /* LKPTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5351FE186C51A0008210D9 /* LKPTextFieldViewController.m */; };
 		CF535202186C520D008210D9 /* LKPTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF535201186C520D008210D9 /* LKPTextFieldView.m */; };
 		CF535206186C5736008210D9 /* LKPTextViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF535205186C5736008210D9 /* LKPTextViewContainer.m */; };
+		CF8F9AD818986A5100801EE2 /* PriorityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8F9AD718986A5100801EE2 /* PriorityTests.m */; };
 		CFA47BA718469CB100DDFA75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA47BA618469CB100DDFA75 /* Images.xcassets */; };
 		CFA9B0051784365600D320ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9B0041784365600D320ED /* UIKit.framework */; };
 		CFA9B0071784365600D320ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9B0061784365600D320ED /* Foundation.framework */; };
@@ -64,6 +65,7 @@
 		CF535201186C520D008210D9 /* LKPTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPTextFieldView.m; sourceTree = "<group>"; };
 		CF535204186C5736008210D9 /* LKPTextViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKPTextViewContainer.h; sourceTree = "<group>"; };
 		CF535205186C5736008210D9 /* LKPTextViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKPTextViewContainer.m; sourceTree = "<group>"; };
+		CF8F9AD718986A5100801EE2 /* PriorityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityTests.m; sourceTree = "<group>"; };
 		CFA47BA618469CB100DDFA75 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CFA9B0011784365600D320ED /* LayoutKitPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA9B0041784365600D320ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -236,6 +238,7 @@
 				CFE1737A1882E33E00B319D0 /* Supporting Files */,
 				CFE1737F1882E33E00B319D0 /* AutoLayoutKitTests.m */,
 				CF409E0B1885E5000054997B /* LayoutTests.m */,
+				CF8F9AD718986A5100801EE2 /* PriorityTests.m */,
 			);
 			path = AutoLayoutKitTests;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 			files = (
 				CFE173801882E33E00B319D0 /* AutoLayoutKitTests.m in Sources */,
 				CF409E0C1885E5000054997B /* LayoutTests.m in Sources */,
+				CF8F9AD818986A5100801EE2 /* PriorityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

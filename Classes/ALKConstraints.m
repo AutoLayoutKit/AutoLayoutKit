@@ -28,6 +28,7 @@
 @interface ALKConstraints ()
 
 @property (nonatomic, strong) UIView *item;
+@property (nonatomic, assign) UILayoutPriority priority;
 
 @end
 
@@ -46,33 +47,57 @@
     if (self = [super init]) {
         self.item = view;
         [self.item setTranslatesAutoresizingMaskIntoConstraints:FALSE];
+        
+        self.priority = UILayoutPriorityRequired;
     }
     
     return self;
+}
+
+#pragma mark - PRIORITY
+
+- (void)setPriorityRequired
+{
+    [self setPriority:UILayoutPriorityRequired];
+}
+
+- (void)setPriorityDefaultHigh
+{
+    [self setPriority:UILayoutPriorityDefaultHigh];
+}
+
+- (void)setPriorityDefaultLow
+{
+    [self setPriority:UILayoutPriorityDefaultLow];
+}
+
+- (void)setPriorityFittingSizeLevel
+{
+    [self setPriority:UILayoutPriorityFittingSizeLevel];
 }
 
 #pragma mark - DSL (SET)
 
 - (void)set:(ALKAttribute)attribute to:(CGFloat)constant
 {
-    set(self.item, attribute, constant, nil);
+    set(self.item, attribute, constant, nil, self.priority);
 }
 
 - (void)set:(ALKAttribute)attribute to:(CGFloat)constant name:(NSString *)name
 {
-    set(self.item, attribute, constant, name);
+    set(self.item, attribute, constant, name, self.priority);
 }
 
 #pragma mark - DSL (MAKE)
 
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
 {
-    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, nil);
+    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, nil, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
-    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, name);
+    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, name, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
@@ -226,12 +251,12 @@
 
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
 {
-    make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, constant, targetView, nil);
+    make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, constant, targetView, nil, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
-    make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, constant, targetView, name);
+    make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, constant, targetView, name, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
@@ -385,12 +410,12 @@
 
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView
 {
-    make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, constant, targetView, nil);
+    make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, constant, targetView, nil, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
-    make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, constant, targetView, name);
+    make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, constant, targetView, name, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
@@ -545,9 +570,10 @@
 void set (UIView *item,
           ALKAttribute itemAttribute,
           CGFloat constant,
-          NSString *name)
+          NSString *name,
+          UILayoutPriority priority)
 {
-    createLayoutConstraint(item, itemAttribute, ALKEqualTo, nil, ALKNone, 1.f, constant, item, name);
+    createLayoutConstraint(item, itemAttribute, ALKEqualTo, nil, ALKNone, 1.f, constant, item, name, priority);
 }
 
 void make(UIView *item,
@@ -558,9 +584,10 @@ void make(UIView *item,
           CGFloat multiplier,
           CGFloat constant,
           UIView *targetItem,
-          NSString *name)
+          NSString *name,
+          UILayoutPriority priority)
 {
-    createLayoutConstraint(item, itemAttribute, relation, relatedItem, relatedItemAttribute, multiplier, constant, targetItem, name);
+    createLayoutConstraint(item, itemAttribute, relation, relatedItem, relatedItemAttribute, multiplier, constant, targetItem, name, priority);
 }
 
 NSLayoutConstraint * createLayoutConstraint(UIView *item,
@@ -571,7 +598,8 @@ NSLayoutConstraint * createLayoutConstraint(UIView *item,
                                             CGFloat multiplier,
                                             CGFloat constant,
                                             UIView *targetItem,
-                                            NSString *name)
+                                            NSString *name,
+                                            UILayoutPriority priority)
 {
     NSLayoutAttribute itemAttributeValue = [ALKConstraints enumToAttribute:itemAttribute];
     NSLayoutRelation relationValue = [ALKConstraints enumToRelation:relation];
@@ -584,6 +612,8 @@ NSLayoutConstraint * createLayoutConstraint(UIView *item,
                                                           attribute:relatedItemAttributeValue
                                                          multiplier:multiplier
                                                            constant:constant];
+    
+    lc.priority = priority;
     
     if (nil != name) {
         [targetItem alk_addConstraint:lc withName:name];
