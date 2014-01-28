@@ -336,6 +336,38 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  constraint relates to. You need to use `ALKAttribute` names.
  @param multiplier The constant of the related view is multiplied with this
  value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ 
+ @see -make:equalTo:s:times:plus:on:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
  @param constant The constant is added to the multiplication result.
  @param targetView The view to which the constraint is added. This needs to be
  a common superview of both the target and the related view, otherwise you will
@@ -352,6 +384,41 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
        times:(CGFloat)multiplier
         plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:equalTo:s:times:plus:on:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
           on:(UIView *)targetView
         name:(NSString *)name;
 
@@ -400,6 +467,36 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ 
+ @see -make:equalTo:s:plus:on:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ - It assumes a multiplier of `1.f`.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is added to the multiplication result.
  @param targetView The view to which the constraint is added. This needs to be
  a common superview of both the target and the related view, otherwise you will
@@ -415,6 +512,39 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
      equalTo:(id)relatedItem
            s:(ALKAttribute)relatedAttribute
         plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ - It assumes a multiplier of `1.f`.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:equalTo:s:plus:on:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
           on:(UIView *)targetView
         name:(NSString *)name;
 
@@ -553,7 +683,6 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  relation.
  - The constraint will be added to the nearest common superview of the target and
  the related view. In most cases, it will be the superview of the target.
- - It assumes a constant of `0.f`.
  
  @param attribute The `NSLayoutAttribute` on the target view that is influenced
  by the created constraint. You need to use `ALKAttribute` names.
@@ -574,6 +703,36 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
        times:(CGFloat)multiplier
         plus:(CGFloat)constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ - The constraint will be added to the nearest common superview of the target and
+ the related view. In most cases, it will be the superview of the target.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @see -make:equalTo:s:times:plus:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -617,8 +776,40 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  relation.
  - The constraint will be added to the nearest common superview of the target and
  the related view. In most cases, it will be the superview of the target.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the targetView.
+ 
+ @see -make:equalTo:s:times:plus:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ - The constraint will be added to the nearest common superview of the target and
+ the related view. In most cases, it will be the superview of the target.
  - It assumes a multiplier of `1.f`.
- - It assumes a constant of `0.f`.
  
  @param attribute The `NSLayoutAttribute` on the target view that is influenced
  by the created constraint. You need to use `ALKAttribute` names.
@@ -654,6 +845,34 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @see -make:equalTo:s:plus:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ - The constraint will be added to the nearest common superview of the target and
+ the related view. In most cases, it will be the superview of the target.
+ - It assumes a multiplier of `1.f`.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is added to the multiplication result.
  @param name The name of the created constraint. You can fetch the created
  constraint later on using `constraintWithName:` on the targetView.
@@ -666,6 +885,37 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
      equalTo:(id)relatedItem
            s:(ALKAttribute)relatedAttribute
         plus:(CGFloat)constant
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ - The constraint will be added to the nearest common superview of the target and
+ the related view. In most cases, it will be the superview of the target.
+ - It assumes a multiplier of `1.f`.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the targetView.
+ 
+ @see -make:equalTo:s:plus:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+     equalTo:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
         name:(NSString *)name;
 
 /**
@@ -840,6 +1090,39 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  constraint relates to. You need to use `ALKAttribute` names.
  @param multiplier The constant of the related view is multiplied with this
  value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ 
+ @see -make:lessThan:s:times:plus:on:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
  @param constant The constant is added to the multiplication result.
  @param targetView The view to which the constraint is added. This needs to be
  a common superview of both the target and the related view, otherwise you will
@@ -856,6 +1139,42 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
        times:(CGFloat)multiplier
         plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:lessThan:s:times:plus:on:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
           on:(UIView *)targetView
         name:(NSString *)name;
 
@@ -904,6 +1223,36 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ 
+ @see -make:lessThan:s:plus:on:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is added to the multiplication result.
  @param targetView The view to which the constraint is added. This needs to be
  a common superview of both the target and the related view, otherwise you will
@@ -919,6 +1268,39 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
     lessThan:(id)relatedItem
            s:(ALKAttribute)relatedAttribute
         plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:lessThan:s:plus:on:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
           on:(UIView *)targetView
         name:(NSString *)name;
 
@@ -1092,6 +1474,35 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  constraint relates to. You need to use `ALKAttribute` names.
  @param multiplier The constant of the related view is multiplied with this
  value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @see -make:lessThan:s:times:plus:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
  @param constant The constant is added to the multiplication result.
  @param name The name of the created constraint. You can fetch the created
  constraint later on using `constraintWithName:` on the `targetView`.
@@ -1105,6 +1516,38 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
        times:(CGFloat)multiplier
         plus:(CGFloat)constant
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:lessThan:s:times:plus:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
         name:(NSString *)name;
 
 /**
@@ -1148,6 +1591,32 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @see -make:lessThan:s:plus:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is added to the multiplication result.
  @param name The name of the created constraint. You can fetch the created
  constraint later on using `constraintWithName:` on the `targetView`.
@@ -1160,6 +1629,35 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
     lessThan:(id)relatedItem
            s:(ALKAttribute)relatedAttribute
         plus:(CGFloat)constant
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view smaller than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationLessThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:lessThan:s:plus:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+    lessThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
         name:(NSString *)name;
 
 /**
@@ -1325,6 +1823,39 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  constraint relates to. You need to use `ALKAttribute` names.
  @param multiplier The constant of the related view is multiplied with this
  value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ 
+ @see -make:greaterThan:s:times:plus:on:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
  @param constant The constant is added to the multiplication result.
  @param targetView The view to which the constraint is added. This needs to be
  a common superview of both the target and the related view, otherwise you will
@@ -1341,6 +1872,42 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
        times:(CGFloat)multiplier
         plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:greaterThan:s:times:plus:on:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
           on:(UIView *)targetView
         name:(NSString *)name;
 
@@ -1389,6 +1956,36 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ 
+ @see -make:greaterThan:s:plus:on:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
+          on:(UIView *)targetView;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is added to the multiplication result.
  @param targetView The view to which the constraint is added. This needs to be
  a common superview of both the target and the related view, otherwise you will
@@ -1404,6 +2001,39 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  greaterThan:(id)relatedItem
            s:(ALKAttribute)relatedAttribute
         plus:(CGFloat)constant
+          on:(UIView *)targetView
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param targetView The view to which the constraint is added. This needs to be
+ a common superview of both the target and the related view, otherwise you will
+ cause exceptions.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:greaterThan:s:plus:on:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
           on:(UIView *)targetView
         name:(NSString *)name;
 
@@ -1548,6 +2178,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  constraint relates to. You need to use `ALKAttribute` names.
  @param multiplier The constant of the related view is multiplied with this
  value to determine the targets constraint.
+ @param constant The constant is added to the multiplication result.
  
  @see -make:greaterThan:s:times:name:
  
@@ -1576,6 +2207,36 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  constraint relates to. You need to use `ALKAttribute` names.
  @param multiplier The constant of the related view is multiplied with this
  value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @see -make:greaterThan:s:times:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is added to the multiplication result.
  @param name The name of the created constraint. You can fetch the created
  constraint later on using `constraintWithName:` on the `targetView`.
  
@@ -1588,6 +2249,38 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
            s:(ALKAttribute)relatedAttribute
        times:(CGFloat)multiplier
         plus:(CGFloat)constant
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param multiplier The constant of the related view is multiplied with this
+ value to determine the targets constraint.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:greaterThan:s:times:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       times:(CGFloat)multiplier
+       minus:(CGFloat)constant
         name:(NSString *)name;
 
 /**
@@ -1631,6 +2324,32 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @see -make:greaterThan:s:plus:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is added to the multiplication result.
  @param name The name of the created constraint. You can fetch the created
  constraint later on using `constraintWithName:` on the `targetView`.
@@ -1643,6 +2362,35 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  greaterThan:(id)relatedItem
            s:(ALKAttribute)relatedAttribute
         plus:(CGFloat)constant
+        name:(NSString *)name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to another view. This is useful for aligning view to each other, for
+ example making the width of a view greater than or equal to the width of its
+ superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationGreaterThanOrEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @see -make:greaterThan:s:plus:name:
+ 
+ @since 0.5.0
+ */
+- (void)make:(ALKAttribute)attribute
+ greaterThan:(id)relatedItem
+           s:(ALKAttribute)relatedAttribute
+       minus:(CGFloat)constant
         name:(NSString *)name;
 
 /**

@@ -95,9 +95,19 @@
     make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, nil, self.priority);
 }
 
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant on:(UIView *)targetView
+{
+    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, ((-1) * constant), targetView, nil, self.priority);
+}
+
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, constant, targetView, name, self.priority);
+}
+
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    make(self.item, attribute, ALKEqualTo, relatedItem, relatedAttribute, multiplier, ((-1) * constant), targetView, name, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
@@ -110,6 +120,16 @@
             on:targetView];
 }
 
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant on:(UIView *)targetView
+{
+    [self make:attribute
+       equalTo:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
+            on:targetView];
+}
+
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
@@ -117,6 +137,17 @@
              s:relatedAttribute
          times:1.f
           plus:constant
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+       equalTo:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
             on:targetView
           name:name];
 }
@@ -173,6 +204,16 @@
             on:self.item.superview];
 }
 
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant
+{
+    [self make:attribute
+       equalTo:relatedItem
+             s:relatedAttribute
+         times:multiplier
+         minus:constant
+            on:self.item.superview];
+}
+
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
@@ -180,6 +221,17 @@
              s:relatedAttribute
          times:multiplier
           plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+       equalTo:relatedItem
+             s:relatedAttribute
+         times:multiplier
+         minus:constant
             on:self.item.superview
           name:name];
 }
@@ -194,6 +246,16 @@
             on:self.item.superview];
 }
 
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant
+{
+    [self make:attribute
+       equalTo:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
+            on:self.item.superview];
+}
+
 - (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
@@ -201,6 +263,17 @@
              s:relatedAttribute
          times:1.f
           plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute equalTo:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+       equalTo:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
             on:self.item.superview
           name:name];
 }
@@ -254,9 +327,19 @@
     make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, constant, targetView, nil, self.priority);
 }
 
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant on:(UIView *)targetView
+{
+    make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, ((-1) * constant), targetView, nil, self.priority);
+}
+
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, constant, targetView, name, self.priority);
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    make(self.item, attribute, ALKLessThan, relatedItem, relatedAttribute, multiplier, ((-1) * constant), targetView, name, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
@@ -269,6 +352,16 @@
             on:targetView];
 }
 
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant on:(UIView *)targetView
+{
+    [self make:attribute
+      lessThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
+            on:targetView];
+}
+
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
@@ -276,6 +369,17 @@
              s:relatedAttribute
          times:1.f
           plus:constant
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
             on:targetView
           name:name];
 }
@@ -332,6 +436,16 @@
             on:self.item.superview];
 }
 
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant
+{
+    [self make:attribute
+      lessThan:relatedItem
+             s:relatedAttribute
+         times:multiplier
+         minus:constant
+            on:self.item.superview];
+}
+
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
@@ -339,6 +453,17 @@
              s:relatedAttribute
          times:multiplier
           plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedItem
+             s:relatedAttribute
+         times:multiplier
+         minus:constant
             on:self.item.superview
           name:name];
 }
@@ -353,6 +478,16 @@
             on:self.item.superview];
 }
 
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant
+{
+    [self make:attribute
+      lessThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
+            on:self.item.superview];
+}
+
 - (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
@@ -360,6 +495,17 @@
              s:relatedAttribute
          times:1.f
           plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute lessThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+      lessThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
             on:self.item.superview
           name:name];
 }
@@ -413,9 +559,19 @@
     make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, constant, targetView, nil, self.priority);
 }
 
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant on:(UIView *)targetView
+{
+    make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, ((-1) * constant), targetView, nil, self.priority);
+}
+
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, constant, targetView, name, self.priority);
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    make(self.item, attribute, ALKGreaterThan, relatedItem, relatedAttribute, multiplier, ((-1) * constant), targetView, name, self.priority);
 }
 
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView
@@ -428,6 +584,16 @@
             on:targetView];
 }
 
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant on:(UIView *)targetView
+{
+    [self make:attribute
+   greaterThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
+            on:targetView];
+}
+
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
 {
     [self make:attribute
@@ -435,6 +601,17 @@
              s:relatedAttribute
          times:1.f
           plus:constant
+            on:targetView
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant on:(UIView *)targetView name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
             on:targetView
           name:name];
 }
@@ -491,6 +668,16 @@
             on:self.item.superview];
 }
 
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant
+{
+    [self make:attribute
+   greaterThan:relatedItem
+             s:relatedAttribute
+         times:multiplier
+         minus:constant
+            on:self.item.superview];
+}
+
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
@@ -498,6 +685,17 @@
              s:relatedAttribute
          times:multiplier
           plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute times:(CGFloat)multiplier minus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedItem
+             s:relatedAttribute
+         times:multiplier
+         minus:constant
             on:self.item.superview
           name:name];
 }
@@ -512,6 +710,16 @@
             on:self.item.superview];
 }
 
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant
+{
+    [self make:attribute
+   greaterThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
+            on:self.item.superview];
+}
+
 - (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute plus:(CGFloat)constant name:(NSString *)name
 {
     [self make:attribute
@@ -519,6 +727,17 @@
              s:relatedAttribute
          times:1.f
           plus:constant
+            on:self.item.superview
+          name:name];
+}
+
+- (void)make:(ALKAttribute)attribute greaterThan:(id)relatedItem s:(ALKAttribute)relatedAttribute minus:(CGFloat)constant name:(NSString *)name
+{
+    [self make:attribute
+   greaterThan:relatedItem
+             s:relatedAttribute
+         times:1.f
+         minus:constant
             on:self.item.superview
           name:name];
 }
