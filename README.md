@@ -74,6 +74,35 @@ The (main) API for **make** is:
 
 There are also APIs for both **set** and **make** that don't require a name. Also, as you might have noticed in the first example, there is an API for **make** that doesn't require a constant. I've really tried to make this as convenient as possible. There is a ton of other convenience methods that default to the most common value. Just check out the header file.
 
+### Using Priorities
+
+By version 0.5.0, UILayoutPriorities are supported by ALK. All constraints created by ALK have the priority `UILayoutPriorityRequired` by default. You can change this by specifying a different priority *before* you create any constraints.
+
+```Objective-C
+[ALKConstraints layout:self.optionA do:^(ALKConstraints *c) {
+  [c set:ALKHeight to:60.f name:kLKHeight]; // priority == 1000 (required)
+
+  [c setPriority:500]; // set the priority to 500
+  [c set:ALKWidth to:60.f name:kLKWidth]; // priority == 500
+  [c make:ALKRight equalTo:self.optionB s:ALKLeft plus:-10.f]; // priority == 500
+
+  [c setPriorityRequired]; // reset to default
+  [c make:ALKCenterY equalTo:self s:ALKCenterY]; // priority == 1000 (required)
+}];
+```
+
+When the priority is set by one of the five priority methods, the changes are effecting *all constraints that are created from there on* until a different priority is specified.
+
+The five methods are:
+
+```Objective-C
+- (void)setPriority:(UILayoutPriority)priority;
+- (void)setPriorityRequired;          // 1000
+- (void)setPriorityDefaultHigh;       // 750
+- (void)setPriorityDefaultLow;        // 250
+- (void)setPriorityFittingSizeLevel;  // 50
+```
+
 ### Modifying Layout Constraints
 
 There is little we can modify on existing NSLayoutConstraint instances and the only property we can modify is the so-called **constant**. I don’t know if Apple realized how hilarious this is when they thought for a name of this property.
