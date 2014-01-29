@@ -1,7 +1,7 @@
 platform :ios, '6.0'
 
-pod 'AutoLayoutKit', :path => '../AutoLayoutKit.podspec'
+pod 'AutoLayoutKit', :path => '../'
 
 target :AutoLayoutKitTests do
-  pod 'AutoLayoutKit', :path => '../AutoLayoutKit.podspec'
+  pod 'AutoLayoutKit', :path => '../'
 end
