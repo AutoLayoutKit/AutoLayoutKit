@@ -103,6 +103,28 @@ The five methods are:
 - (void)setPriorityFittingSizeLevel;  // 50
 ```
 
+### Working with Negative Constraints
+
+Sometimes it's necessary to specify a constraint with a negative constant when you really mean to use a positive constant. This often leads to confusions and ugly code like `(-1) * myConst`. A good example for this scenario is a bottom margin of a child view to its superview.
+
+Assume you want to create a bottom margin of 10 pixels. Instead of writing:
+
+```Objective-C
+[ALKConstraints layout:childView do:^(ALKConstraints *c) {
+  [c make:ALKBottom equalTo:parentView s:ALKButton plus:((-1)*10.f)];
+}];
+```
+
+You can write:
+
+```Objective-C
+[ALKConstraints layout:childView do:^(ALKConstraints *c) {
+  [c make:ALKBottom equalTo:parentView s:ALKButton minus:10.f];
+}];
+```
+
+This does the same thing but is much more readable. Every API that has a `plus:` also has a `minus:`.
+
 ### Modifying Layout Constraints
 
 There is little we can modify on existing NSLayoutConstraint instances and the only property we can modify is the so-called **constant**. I don’t know if Apple realized how hilarious this is when they thought for a name of this property.
