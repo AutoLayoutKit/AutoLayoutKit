@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AutoLayoutKit"
-  s.version      = "0.4.0"
+  s.version      = "0.5.0"
   s.summary      = "A descriptive way to create NSLayoutConstraints for AutoLayout in iOS 6.0+. Just use ALK to layout your views!"
   s.description  = <<-DESC
                    This Cocoa Touch framework provides a simple and intuitive 
