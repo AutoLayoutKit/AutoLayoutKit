@@ -22,13 +22,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <XCTest/XCTest.h>
+#import "ALKTestCase.h"
 #import "AutoLayoutKit.h"
 
 NSString * const kALKTestLayoutConstraint = @"ALKTestConstraint";
-NSUInteger const tag = 1234;
 
-@interface LayoutTests : XCTestCase
+@interface LayoutTests : ALKTestCase
 
 @property (nonatomic, strong, readwrite) UIView *view;
 
@@ -46,78 +45,6 @@ NSUInteger const tag = 1234;
 {
   self.view = nil;
   [super tearDown];
-}
-
-#pragma mark - Check Helper
-
-- (void)checkConstraint:(NSLayoutConstraint *)constraint
-               withItem:(id)item
-              attribute:(NSLayoutAttribute)attribute
-              relatedBy:(NSLayoutRelation)relation
-                 toItem:(id)relItem
-              attribute:(NSLayoutAttribute)relAttribute
-             multiplier:(CGFloat)multiplier
-               constant:(CGFloat)constant
-{
-  XCTAssertNotNil(constraint, @"constraint must not be nil");
-  
-  XCTAssertEqual(constraint.firstItem,              item,                 @"");
-  XCTAssertEqual(constraint.firstAttribute,         attribute,            @"");
-  XCTAssertEqual(constraint.relation,               relation,             @"");
-  XCTAssertEqual(constraint.secondItem,             relItem,              @"");
-  XCTAssertEqual(constraint.secondAttribute,        relAttribute,         @"");
-  XCTAssertEqualWithAccuracy(constraint.multiplier, multiplier, .0001f,   @"");
-  XCTAssertEqualWithAccuracy(constraint.constant,   constant, .0001f,     @"");
-}
-
-- (void)checkMinusConstraint:(NSLayoutConstraint *)constraint
-                    withItem:(id)item
-                   attribute:(NSLayoutAttribute)attribute
-                   relatedBy:(NSLayoutRelation)relation
-                      toItem:(id)relItem
-                   attribute:(NSLayoutAttribute)relAttribute
-                  multiplier:(CGFloat)multiplier
-                    constant:(CGFloat)constant
-{
-  XCTAssertNotNil(constraint, @"constraint must not be nil");
-  
-  XCTAssertEqual(constraint.firstItem,              item,                 @"");
-  XCTAssertEqual(constraint.firstAttribute,         attribute,            @"");
-  XCTAssertEqual(constraint.relation,               relation,             @"");
-  XCTAssertEqual(constraint.secondItem,             relItem,              @"");
-  XCTAssertEqual(constraint.secondAttribute,        relAttribute,         @"");
-  XCTAssertEqualWithAccuracy(constraint.multiplier, multiplier, .0001f,   @"");
-  XCTAssertEqualWithAccuracy(constraint.constant,   ((-1) * constant), .0001f,     @"");
-}
-
-- (NSLayoutConstraint *)firstConstraint:(UIView *)view
-{
-  NSLayoutConstraint *c = nil;
-  id item = nil;
-  
-  if ([view.constraints count] > 0) {
-    item = view.constraints[0];
-  }
-  
-  if ((item != nil) && ([item isKindOfClass:[NSLayoutConstraint class]])) {
-    c = (NSLayoutConstraint *)item;
-  }
-  
-  return c;
-}
-
-- (UIView *)newEmptyView
-{
-  return [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-- (UIView *)newTwoTierViewHierarchy
-{
-  UIView *parentView = [[UIView alloc] initWithFrame:CGRectZero];
-  UIView *childView = [[UIView alloc] initWithFrame:CGRectZero];
-  [childView setTag:tag];
-  [parentView addSubview:childView];
-  return parentView;
 }
 
 #pragma mark - Testfields

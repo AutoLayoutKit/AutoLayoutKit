@@ -26,4 +26,12 @@
 
 @implementation ALKConstraints (Convenience)
 
+- (void)alignAllEdgesTo:(UIView *)relatedView
+{
+    [self make:ALKLeft    equalTo:relatedView s:ALKLeft];
+    [self make:ALKTop     equalTo:relatedView s:ALKTop];
+    [self make:ALKRight   equalTo:relatedView s:ALKRight];
+    [self make:ALKBottom  equalTo:relatedView s:ALKBottom];
+}
+
 @end

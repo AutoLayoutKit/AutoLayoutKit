@@ -26,4 +26,38 @@
 
 @interface ALKConstraints (Convenience)
 
+////////////////////////////////////////////////////////////////////////////////
+/// @name Aligning Views to Other Views
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ @brief Aligns all edges to a given view.
+ 
+ This method is a shorthand to make all four edges of a view equal to the edges
+ of a given (super-)view.
+ 
+ Without this method you would need to write:
+ 
+    [ALKConstraints layout:self.someView do:^(ALKConstraints *c) {
+      [c make:ALKLeft   equalTo:self.someOtherView s:ALKLeft];
+      [c make:ALKTop    equalTo:self.someOtherView s:ALKTop];
+      [c make:ALKRight  equalTo:self.someOtherView s:ALKRight];
+      [c make:ALKBottom equalTo:self.someOtherView s:ALKBottom];
+    }];
+ 
+ With this method the same code becomes:
+ 
+    [ALKConstraints layout:self.someView do:^(ALKConstraints *c) {
+      [c alignAllEdgesTo:self.someOtherView];
+    }];
+ 
+ @param relatedView An instance of a `UIView` (subclass) that needs to be 
+ within the same view hierachy of the item that you're aligning to it.
+ 
+ @see -alignAllEdgesTo:edgeInsets:
+ 
+ @since 0.6.0
+ */
+- (void)alignAllEdgesTo:(UIView *)relatedView;
+
 @end

@@ -25,4 +25,5 @@
 #import <UIKit/UIKit.h>
 
 #import <AutoLayoutKit/ALKConstraints.h>
+#import <AutoLayoutKit/ALKConstraints+Convenience.h>
 #import <AutoLayoutKit/UIView+ALKNamedConstraints.h>
