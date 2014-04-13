@@ -302,7 +302,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LKP;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = projectserver.org;
 				TargetAttributes = {
 					CFE173731882E33E00B319D0 = {
@@ -562,7 +562,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61B20BC253E14DE4B5CE9F69 /* Pods-AutoLayoutKitTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LayoutKitPrototype.app/LayoutKitPrototype";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -595,7 +594,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61B20BC253E14DE4B5CE9F69 /* Pods-AutoLayoutKitTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LayoutKitPrototype.app/LayoutKitPrototype";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;

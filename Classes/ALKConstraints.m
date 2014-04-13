@@ -786,39 +786,39 @@
 
 #pragma mark - Functions
 
-void set (UIView *item,
-          ALKAttribute itemAttribute,
-          CGFloat constant,
-          NSString *name,
-          UILayoutPriority priority)
+static void set (UIView *item,
+                 ALKAttribute itemAttribute,
+                 CGFloat constant,
+                 NSString *name,
+                 UILayoutPriority priority)
 {
     createLayoutConstraint(item, itemAttribute, ALKEqualTo, nil, ALKNone, 1.f, constant, item, name, priority);
 }
 
-void make(UIView *item,
-          ALKAttribute itemAttribute,
-          ALKRelation relation,
-          id relatedItem,
-          ALKAttribute relatedItemAttribute,
-          CGFloat multiplier,
-          CGFloat constant,
-          UIView *targetItem,
-          NSString *name,
-          UILayoutPriority priority)
+static void make(UIView *item,
+                 ALKAttribute itemAttribute,
+                 ALKRelation relation,
+                 id relatedItem,
+                 ALKAttribute relatedItemAttribute,
+                 CGFloat multiplier,
+                 CGFloat constant,
+                 UIView *targetItem,
+                 NSString *name,
+                 UILayoutPriority priority)
 {
     createLayoutConstraint(item, itemAttribute, relation, relatedItem, relatedItemAttribute, multiplier, constant, targetItem, name, priority);
 }
 
-NSLayoutConstraint * createLayoutConstraint(UIView *item,
-                                            ALKAttribute itemAttribute,
-                                            ALKRelation relation,
-                                            id relatedItem,
-                                            ALKAttribute relatedItemAttribute,
-                                            CGFloat multiplier,
-                                            CGFloat constant,
-                                            UIView *targetItem,
-                                            NSString *name,
-                                            UILayoutPriority priority)
+static NSLayoutConstraint * createLayoutConstraint(UIView *item,
+                                                   ALKAttribute itemAttribute,
+                                                   ALKRelation relation,
+                                                   id relatedItem,
+                                                   ALKAttribute relatedItemAttribute,
+                                                   CGFloat multiplier,
+                                                   CGFloat constant,
+                                                   UIView *targetItem,
+                                                   NSString *name,
+                                                   UILayoutPriority priority)
 {
     NSLayoutAttribute itemAttributeValue = [ALKConstraints enumToAttribute:itemAttribute];
     NSLayoutRelation relationValue = [ALKConstraints enumToRelation:relation];
