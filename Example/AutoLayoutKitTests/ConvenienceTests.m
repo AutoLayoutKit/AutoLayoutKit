@@ -105,4 +105,106 @@
                constant:0.f];
 }
 
+- (void)testAlignAllEdgesWithInsets
+{
+  UIView *parentView = [self newTwoTierViewHierarchy];
+  UIView *childView = [parentView viewWithTag:tag];
+  
+  dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+  
+  [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+    [c alignAllEdgesTo:parentView
+            edgeInsets:UIEdgeInsetsMake(1.f, 2.f, 3.f, 4.f)];
+    dispatch_semaphore_signal(semaphore);
+  }];
+  
+  dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+  
+  NSLayoutConstraint *constraint;
+  
+  constraint = [self constraintOn:parentView
+               withFirstAttribute:NSLayoutAttributeLeft];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeLeft
+              relatedBy:NSLayoutRelationEqual
+                 toItem:parentView
+              attribute:NSLayoutAttributeLeft
+             multiplier:1.f
+               constant:2.f];
+  
+  constraint = [self constraintOn:parentView
+               withFirstAttribute:NSLayoutAttributeTop];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeTop
+              relatedBy:NSLayoutRelationEqual
+                 toItem:parentView
+              attribute:NSLayoutAttributeTop
+             multiplier:1.f
+               constant:1.f];
+  
+  constraint = [self constraintOn:parentView
+               withFirstAttribute:NSLayoutAttributeRight];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeRight
+              relatedBy:NSLayoutRelationEqual
+                 toItem:parentView
+              attribute:NSLayoutAttributeRight
+             multiplier:1.f
+               constant:-4.f];
+  
+  
+  constraint = [self constraintOn:parentView
+               withFirstAttribute:NSLayoutAttributeBottom];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeBottom
+              relatedBy:NSLayoutRelationEqual
+                 toItem:parentView
+              attribute:NSLayoutAttributeBottom
+             multiplier:1.f
+               constant:-3.f];
+}
+
+- (void)testCenterIn
+{
+  UIView *parentView = [self newTwoTierViewHierarchy];
+  UIView *childView = [parentView viewWithTag:tag];
+  
+  dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+  
+  [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+    [c centerIn:parentView];
+    dispatch_semaphore_signal(semaphore);
+  }];
+  
+  dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+  
+  NSLayoutConstraint *constraint;
+  
+  constraint = [self constraintOn:parentView
+               withFirstAttribute:NSLayoutAttributeCenterX];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeCenterX
+              relatedBy:NSLayoutRelationEqual
+                 toItem:parentView
+              attribute:NSLayoutAttributeCenterX
+             multiplier:1.f
+               constant:0.f];
+  
+  constraint = [self constraintOn:parentView
+               withFirstAttribute:NSLayoutAttributeCenterY];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeCenterY
+              relatedBy:NSLayoutRelationEqual
+                 toItem:parentView
+              attribute:NSLayoutAttributeCenterY
+             multiplier:1.f
+               constant:0.f];
+}
+
 @end

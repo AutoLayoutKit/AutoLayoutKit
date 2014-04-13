@@ -28,10 +28,24 @@
 
 - (void)alignAllEdgesTo:(UIView *)relatedView
 {
-    [self make:ALKLeft    equalTo:relatedView s:ALKLeft];
-    [self make:ALKTop     equalTo:relatedView s:ALKTop];
-    [self make:ALKRight   equalTo:relatedView s:ALKRight];
-    [self make:ALKBottom  equalTo:relatedView s:ALKBottom];
+  [self make:ALKLeft    equalTo:relatedView s:ALKLeft];
+  [self make:ALKTop     equalTo:relatedView s:ALKTop];
+  [self make:ALKRight   equalTo:relatedView s:ALKRight];
+  [self make:ALKBottom  equalTo:relatedView s:ALKBottom];
+}
+
+- (void)alignAllEdgesTo:(UIView *)relatedView edgeInsets:(UIEdgeInsets)insets
+{
+  [self make:ALKLeft    equalTo:relatedView s:ALKLeft     plus:insets.left];
+  [self make:ALKTop     equalTo:relatedView s:ALKTop      plus:insets.top];
+  [self make:ALKRight   equalTo:relatedView s:ALKRight    minus:insets.right];
+  [self make:ALKBottom  equalTo:relatedView s:ALKBottom   minus:insets.bottom];
+}
+
+- (void)centerIn:(UIView *)relatedView
+{
+  [self make:ALKCenterX  equalTo:relatedView s:ALKCenterX];
+  [self make:ALKCenterY  equalTo:relatedView s:ALKCenterY];
 }
 
 @end
