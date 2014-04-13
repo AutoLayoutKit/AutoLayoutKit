@@ -48,4 +48,10 @@
   [self make:ALKCenterY  equalTo:relatedView s:ALKCenterY];
 }
 
+- (void)setSize:(CGSize)size
+{
+  [self set:ALKHeight to:size.height];
+  [self set:ALKWidth  to:size.width];
+}
+
 @end

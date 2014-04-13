@@ -207,4 +207,43 @@
                constant:0.f];
 }
 
+- (void)testSetSize
+{
+  UIView *parentView = [self newTwoTierViewHierarchy];
+  UIView *childView = [parentView viewWithTag:tag];
+  
+  dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+  
+  [ALKConstraints layout:childView do:^(ALKConstraints *c) {
+    [c setSize:CGSizeMake(100.f, 200.f)];
+    dispatch_semaphore_signal(semaphore);
+  }];
+  
+  dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+  
+  NSLayoutConstraint *constraint;
+  
+  constraint = [self constraintOn:childView
+               withFirstAttribute:NSLayoutAttributeWidth];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeWidth
+              relatedBy:NSLayoutRelationEqual
+                 toItem:nil
+              attribute:NSLayoutAttributeNotAnAttribute
+             multiplier:1.f
+               constant:100.f];
+  
+  constraint = [self constraintOn:childView
+               withFirstAttribute:NSLayoutAttributeHeight];
+  [self checkConstraint:constraint
+               withItem:childView
+              attribute:NSLayoutAttributeHeight
+              relatedBy:NSLayoutRelationEqual
+                 toItem:nil
+              attribute:NSLayoutAttributeNotAnAttribute
+             multiplier:1.f
+               constant:200.f];
+}
+
 @end

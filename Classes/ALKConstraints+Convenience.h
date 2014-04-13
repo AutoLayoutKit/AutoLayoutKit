@@ -119,4 +119,29 @@
  */
 - (void)centerIn:(UIView *)relatedView;
 
+/**
+ @brief Sets both width and height to a given size.
+ 
+ This method takes a CGSize and applies its values as width and height
+ constraints to the view.
+ 
+ Without this method you would need to write:
+ 
+    [ALKConstraints layout:self.someView do:^(ALKConstraints *c) {
+      [c set:ALKHeight  to:200.f];
+      [c set:ALKWidth   to:400.f];
+    }];
+ 
+ With this method the same code becomes:
+ 
+    [ALKConstraints layout:self.someView do:^(ALKConstraints *c) {
+      [c setSize:CGSizeMake(400.f, 200.f)];
+    }];
+ 
+ @param size A CGSize.
+ 
+ @since 0.6.0
+ */
+- (void)setSize:(CGSize)size;
+
 @end
