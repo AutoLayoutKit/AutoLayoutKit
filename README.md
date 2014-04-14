@@ -20,7 +20,7 @@ Let me give you a quick example on how easy it is to create NSLayoutConstraints 
 }];
 ```
 
-Curious what the same code looks without ALK? Check out [[this|Without-AutoLayoutKit]] [this](wiki/Without-AutoLayoutKit).
+Curious what the same code looks without ALK? Check out [this!](wiki/Without-AutoLayoutKit).
 
 ### New in Version 0.6.0: Convenience Methods
 
