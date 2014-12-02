@@ -5,6 +5,12 @@
 [![Build Status](https://travis-ci.org/floriankrueger/AutoLayoutKit.png?branch=master)](https://travis-ci.org/floriankrueger/AutoLayoutKit)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/autolayoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+## Announcement
+
+You think about using AutoLayoutKit in one of your shiny new swift-only Apps? Well, now you can.
+
+Introducing [AutoLayoutKit for swift](https://github.com/floriankrueger/AutoLayoutKit_Swift) (still under development)
+
 ## Usage
 
 For a very basic running example check out the example app. Clone the repo and run `pod install` from the Project directory first.
