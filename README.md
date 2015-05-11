@@ -5,11 +5,11 @@
 [![Build Status](https://travis-ci.org/floriankrueger/AutoLayoutKit.png?branch=master)](https://travis-ci.org/floriankrueger/AutoLayoutKit)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/floriankrueger/autolayoutkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-## Announcement
+## Announcement: Manuscript
 
 You think about using AutoLayoutKit in one of your shiny new swift-only Apps? Well, now you can.
 
-Introducing [AutoLayoutKit for swift](https://github.com/floriankrueger/AutoLayoutKit_Swift) (still under development)
+Introducing [Manuscript](https://github.com/floriankrueger/Manuscript), the fancy successor of AutoLayoutKit written in pure Swift. (Carthage compatible, still under development)
 
 ## Usage
 
