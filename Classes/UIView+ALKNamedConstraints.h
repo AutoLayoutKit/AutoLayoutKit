@@ -39,7 +39,7 @@
  
  @since 0.1.0
  */
-@property (nonatomic, retain, setter = alk_setNamedConstraints:) NSMutableDictionary* alk_namedConstraints;
+@property (nonatomic, strong, nonnull, setter = alk_setNamedConstraints:) NSMutableDictionary * alk_namedConstraints;
 
 /** 
  Tries to add a constraint to the `UIView` while remembering the 
@@ -52,8 +52,8 @@
  
  @since 0.1.0
  */
-- (NSLayoutConstraint *)alk_addConstraint:(NSLayoutConstraint *)constraint
-                                 withName:(NSString *)name;
+- (nonnull NSLayoutConstraint *) alk_addConstraint:(nonnull NSLayoutConstraint *) constraint
+                                          withName:(nullable NSString *) name;
 
 /** 
  Looks in the named constraints for a constraint named `name` and returns it
@@ -66,7 +66,7 @@
  
  @since 0.1.0
  */
-- (NSLayoutConstraint *)alk_constraintWithName:(NSString *)name;
+- (nullable NSLayoutConstraint *) alk_constraintWithName:(nullable NSString *) name;
 
 /** 
  Takes an array of names and tries to remove all `NSLayoutConstraint` instances 
@@ -80,7 +80,7 @@
  
  @since 0.1.0
  */
-- (void)alk_removeConstraintsWithNames:(NSArray *)names;
+- (void) alk_removeConstraintsWithNames:(nonnull NSArray< NSString* > *) names;
 
 /** 
  Takes as single name and tries to remove the `NSLayoutConstraint` instance from 
@@ -94,6 +94,6 @@
  
  @since 0.1.0
  */
-- (void)alk_removeConstraintWithName:(NSString *)name;
+- (void) alk_removeConstraintWithName:(nullable NSString *) name;
 
 @end

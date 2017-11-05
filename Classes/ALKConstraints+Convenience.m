@@ -26,30 +26,26 @@
 
 @implementation ALKConstraints (Convenience)
 
-- (void)alignAllEdgesTo:(UIView *)relatedView
-{
+- (void) alignAllEdgesTo:(nonnull UIView *) relatedView {
   [self make:ALKLeft    equalTo:relatedView s:ALKLeft];
   [self make:ALKTop     equalTo:relatedView s:ALKTop];
   [self make:ALKRight   equalTo:relatedView s:ALKRight];
   [self make:ALKBottom  equalTo:relatedView s:ALKBottom];
 }
 
-- (void)alignAllEdgesTo:(UIView *)relatedView edgeInsets:(UIEdgeInsets)insets
-{
+- (void) alignAllEdgesTo:(nonnull UIView *) relatedView edgeInsets:(UIEdgeInsets) insets {
   [self make:ALKLeft    equalTo:relatedView s:ALKLeft     plus:insets.left];
   [self make:ALKTop     equalTo:relatedView s:ALKTop      plus:insets.top];
   [self make:ALKRight   equalTo:relatedView s:ALKRight    minus:insets.right];
   [self make:ALKBottom  equalTo:relatedView s:ALKBottom   minus:insets.bottom];
 }
 
-- (void)centerIn:(UIView *)relatedView
-{
+- (void) centerIn:(nonnull UIView *) relatedView {
   [self make:ALKCenterX  equalTo:relatedView s:ALKCenterX];
   [self make:ALKCenterY  equalTo:relatedView s:ALKCenterY];
 }
 
-- (void)setSize:(CGSize)size
-{
+- (void) setSize:(CGSize) size {
   [self set:ALKHeight to:size.height];
   [self set:ALKWidth  to:size.width];
 }

@@ -22,7 +22,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "ALKConstraints.h"
+#import <AutoLayoutKit/ALKConstraints.h>
 
 @interface ALKConstraints (Convenience)
 
@@ -58,7 +58,7 @@
  
  @since 0.6.0
  */
-- (void)alignAllEdgesTo:(UIView *)relatedView;
+- (void) alignAllEdgesTo:(nonnull UIView *) relatedView;
 
 /**
  @brief Aligns all edges to a given view with edge insets.
@@ -92,7 +92,7 @@
  
  @since 0.6.0
  */
-- (void)alignAllEdgesTo:(UIView *)relatedView edgeInsets:(UIEdgeInsets)insets;
+- (void) alignAllEdgesTo:(nonnull UIView *) relatedView edgeInsets:(UIEdgeInsets) insets;
 
 /**
  @brief Adds horizontal and vertical alignment to a view.
@@ -117,7 +117,7 @@
  
  @since 0.6.0
  */
-- (void)centerIn:(UIView *)relatedView;
+- (void) centerIn:(nonnull UIView *) relatedView;
 
 /**
  @brief Sets both width and height to a given size.
@@ -142,6 +142,6 @@
  
  @since 0.6.0
  */
-- (void)setSize:(CGSize)size;
+- (void) setSize:(CGSize) size;
 
 @end
