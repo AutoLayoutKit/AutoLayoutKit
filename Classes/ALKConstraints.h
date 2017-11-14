@@ -2525,7 +2525,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
  
  @see -make:equalTo:s:times:plus:on:
  
- @since 0.7.0
+ @since 1.0.0
  */
 - (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
                       equalToSafeArea:(nullable id) relatedItem
@@ -2557,7 +2557,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
  
  @see -make:equalTo:s:times:plus:on:name:
  
- @since 0.7.0
+ @since 1.0.0
  */
 - (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
                       equalToSafeArea:(nullable id) relatedItem
@@ -2588,7 +2588,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
  
  @see -make:equalTo:s:times:plus:on:
  
- @since 0.7.0
+ @since 1.0.0
  */
 - (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
                       equalToSafeArea:(nullable id) relatedItem
@@ -2617,7 +2617,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
  
  @see -make:equalTo:s:times:plus:on:name:
  
- @since 0.7.0
+ @since 1.0.0
  */
 - (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
                       equalToSafeArea:(nullable id) relatedItem
