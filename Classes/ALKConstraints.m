@@ -720,6 +720,17 @@
 - (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
                       equalToSafeArea:(nullable id) relatedItem
                                     s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant {
+    NSLayoutConstraint * lc = nil;
+#if defined(NSFoundationVersionNumber_iOS_9_0)
+    lc = makeSafeArea(self.item, attribute, relatedItem, relatedAttribute, constant, self.item.superview, nil, self.priority);
+#endif
+    return lc ? lc : [self make:attribute equalTo:relatedItem s:relatedAttribute times:1 plus:constant name:nil];
+}
+
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
                                 minus:(CGFloat) constant
                                  name:(nullable NSString *) name {
     NSLayoutConstraint * lc = nil;
@@ -727,6 +738,17 @@
     lc = makeSafeArea(self.item, attribute, relatedItem, relatedAttribute, -constant, self.item.superview, name, self.priority);
 #endif
     return lc ? lc : [self make:attribute equalTo:relatedItem s:relatedAttribute times:1 minus:constant name:name];
+}
+
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant {
+    NSLayoutConstraint * lc = nil;
+#if defined(NSFoundationVersionNumber_iOS_9_0)
+    lc = makeSafeArea(self.item, attribute, relatedItem, relatedAttribute, -constant, self.item.superview, nil, self.priority);
+#endif
+    return lc ? lc : [self make:attribute equalTo:relatedItem s:relatedAttribute times:1 minus:constant name:nil];
 }
 
 - (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute

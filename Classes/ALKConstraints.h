@@ -2547,6 +2547,35 @@ typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
  protocol) to which the constraint relates to.
  @param relatedAttribute The `NSLayoutAttribute on the related view that the
  constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is added to the multiplication result.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
  @param constant The constant is subtracted from the multiplication result.
  @param name The name of the created constraint. You can fetch the created
  constraint later on using `constraintWithName:` on the `targetView`.
@@ -2564,6 +2593,35 @@ typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
                                     s:(ALKAttribute) relatedAttribute
                                 minus:(CGFloat) constant
                                  name:(nullable NSString *) name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:name:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:name:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
