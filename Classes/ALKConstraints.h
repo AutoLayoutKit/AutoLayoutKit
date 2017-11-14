@@ -34,18 +34,18 @@
  @since 0.1.0
  */
 typedef NS_ENUM(NSInteger, ALKAttribute) {
-  /** NSLayoutAttributeLeft */            ALKLeft,
-  /** NSLayoutAttributeRight */           ALKRight,
-  /** NSLayoutAttributeTop */             ALKTop,
-  /** NSLayoutAttributeBottom */          ALKBottom,
-  /** NSLayoutAttributeLeading */         ALKLeading,
-  /** NSLayoutAttributeTrailing */        ALKTrailing,
-  /** NSLayoutAttributeWidth */           ALKWidth,
-  /** NSLayoutAttributeHeight */          ALKHeight,
-  /** NSLayoutAttributeCenterX */         ALKCenterX,
-  /** NSLayoutAttributeCenterY */         ALKCenterY,
-  /** NSLayoutAttributeBaseline */        ALKBaseline,
-  /** NSLayoutAttributeNotAnAttribute */  ALKNone
+  /** NSLayoutAttributeLeft */            ALKLeft = NSLayoutAttributeLeft,
+  /** NSLayoutAttributeRight */           ALKRight = NSLayoutAttributeRight,
+  /** NSLayoutAttributeTop */             ALKTop = NSLayoutAttributeTop,
+  /** NSLayoutAttributeBottom */          ALKBottom = NSLayoutAttributeBottom,
+  /** NSLayoutAttributeLeading */         ALKLeading = NSLayoutAttributeLeading,
+  /** NSLayoutAttributeTrailing */        ALKTrailing = NSLayoutAttributeTrailing,
+  /** NSLayoutAttributeWidth */           ALKWidth = NSLayoutAttributeWidth,
+  /** NSLayoutAttributeHeight */          ALKHeight = NSLayoutAttributeHeight,
+  /** NSLayoutAttributeCenterX */         ALKCenterX = NSLayoutAttributeCenterX,
+  /** NSLayoutAttributeCenterY */         ALKCenterY = NSLayoutAttributeCenterY,
+  /** NSLayoutAttributeBaseline */        ALKBaseline = NSLayoutAttributeBaseline,
+  /** NSLayoutAttributeNotAnAttribute */  ALKNone = NSLayoutAttributeNotAnAttribute
 };
 
 /**
@@ -56,9 +56,9 @@ typedef NS_ENUM(NSInteger, ALKAttribute) {
  @since 0.1.0
  */
 typedef NS_ENUM(NSInteger, ALKRelation) {
-  /** NSLayoutRelationLessThanOrEqual */    ALKLessThan,
-  /** NSLayoutRelationEqual */              ALKEqualTo,
-  /** NSLayoutRelationGreaterThanOrEqual */ ALKGreaterThan
+  /** NSLayoutRelationLessThanOrEqual */    ALKLessThan = NSLayoutRelationLessThanOrEqual,
+  /** NSLayoutRelationEqual */              ALKEqualTo = NSLayoutRelationEqual,
+  /** NSLayoutRelationGreaterThanOrEqual */ ALKGreaterThan = NSLayoutRelationGreaterThanOrEqual
 };
 
 /**
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, ALKRelation) {
  
  @since 0.1.0
  */
-typedef void (^LKLayoutBlock)(ALKConstraints *c);
+typedef void (^LKLayoutBlock)(ALKConstraints * _Nonnull c);
 
 /**
  `ALKConstraints` is the heart of *AutoLayoutKit*. It provides the user with a
@@ -129,7 +129,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-+ (ALKConstraints *)layout:(UIView *)view do:(LKLayoutBlock)layoutBlock;
++ (nonnull ALKConstraints *) layout:(nonnull UIView *) view do:(nonnull LKLayoutBlock) layoutBlock;
 
 /**
  The designated initializer of `ALKConstraints`. You should never have to use 
@@ -140,7 +140,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (id)initWithView:(UIView *)view;
+- (nonnull instancetype) initWithView:(nonnull UIView *) view;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// @name Configuring the ALKConstrain Priorities
@@ -177,7 +177,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)setPriority:(UILayoutPriority)priority;
+- (void) setPriority:(UILayoutPriority) priority;
 
 /**
  @brief Sets the priority of all upcoming `ALKConstraints` to 
@@ -192,7 +192,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)setPriorityRequired;
+- (void) setPriorityRequired;
 
 /**
  @brief Sets the priority of all upcoming `ALKConstraints` to
@@ -207,7 +207,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)setPriorityDefaultHigh;
+- (void) setPriorityDefaultHigh;
 
 /**
  @brief Sets the priority of all upcoming `ALKConstraints` to
@@ -222,7 +222,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)setPriorityDefaultLow;
+- (void) setPriorityDefaultLow;
 
 /**
  @brief Sets the priority of all upcoming `ALKConstraints` to
@@ -237,7 +237,7 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)setPriorityFittingSizeLevel;
+- (void) setPriorityFittingSizeLevel;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// @name Setting Unrelated Constraints
@@ -259,8 +259,8 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)set:(ALKAttribute)attribute
-         to:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) set:(ALKAttribute) attribute
+                                  to:(CGFloat) constant;
 
 /**
  Creates an *unrelated* constraint on the target view meaning the constraint
@@ -280,9 +280,9 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)set:(ALKAttribute)attribute
-         to:(CGFloat)constant
-       name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) set:(ALKAttribute) attribute
+                                  to:(CGFloat) constant
+                                name:(nullable NSString *) name;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// @name Make Equal to (Related Constraints)
@@ -313,12 +313,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -345,12 +345,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -379,13 +379,13 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -414,13 +414,13 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -446,11 +446,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -476,11 +476,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -508,12 +508,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -541,12 +541,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -573,11 +573,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -606,12 +606,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -637,10 +637,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -668,11 +668,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -698,11 +698,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -728,11 +728,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -760,12 +760,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -793,12 +793,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -823,10 +823,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -851,10 +851,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -881,11 +881,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -912,11 +912,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -942,10 +942,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -973,11 +973,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1002,9 +1002,9 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1031,10 +1031,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.1.0
  */
-- (void)make:(ALKAttribute)attribute
-     equalTo:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                              equalTo:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 name:(nullable NSString *) name;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// @name Make Less Than or Equal to (Related Constraints)
@@ -1066,12 +1066,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1099,12 +1099,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1134,13 +1134,13 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1170,13 +1170,13 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1202,11 +1202,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1232,11 +1232,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1264,12 +1264,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1297,12 +1297,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1329,11 +1329,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1362,12 +1362,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1392,10 +1392,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1422,11 +1422,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1451,11 +1451,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1480,11 +1480,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1511,12 +1511,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1543,12 +1543,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1571,10 +1571,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1597,10 +1597,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1625,11 +1625,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1654,11 +1654,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+    lessThan:(nullable id) relatedItem
+           s:(ALKAttribute) relatedAttribute
+       minus:(CGFloat) constant
+        name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1682,10 +1682,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1711,11 +1711,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1738,9 +1738,9 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1764,10 +1764,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
-    lessThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                             lessThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 name:(nullable NSString *) name;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// @name Make Greater Than or Equal to (Related Constraints)
@@ -1799,12 +1799,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1832,12 +1832,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1867,13 +1867,13 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1903,13 +1903,13 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1935,11 +1935,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1965,11 +1965,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -1997,12 +1997,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2030,12 +2030,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2062,11 +2062,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2095,12 +2095,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2125,10 +2125,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-          on:(UIView *)targetView;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                   on:(nonnull UIView *) targetView;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2155,11 +2155,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-          on:(UIView *)targetView
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                   on:(nonnull UIView *) targetView
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2184,11 +2184,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2213,11 +2213,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2244,12 +2244,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        plus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2276,12 +2276,12 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-       minus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                minus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2304,10 +2304,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2330,10 +2330,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2358,11 +2358,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        plus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2387,11 +2387,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.5.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       minus:(CGFloat)constant
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2415,10 +2415,10 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2444,11 +2444,11 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-       times:(CGFloat)multiplier
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                times:(CGFloat) multiplier
+                                 name:(nullable NSString *) name;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2470,9 +2470,9 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute;
 
 /**
  Creates a *related* constraint on the target view meaning the constraint
@@ -2496,10 +2496,189 @@ typedef void (^LKLayoutBlock)(ALKConstraints *c);
  
  @since 0.4.0
  */
-- (void)make:(ALKAttribute)attribute
- greaterThan:(id)relatedItem
-           s:(ALKAttribute)relatedAttribute
-        name:(NSString *)name;
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                          greaterThan:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 name:(nullable NSString *) name;
 
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is added to the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is added to the multiplication result.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 plus:(CGFloat) constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:name:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:name:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant
+                                 name:(nullable NSString *) name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param constant The constant is subtracted from the multiplication result.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:name:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:name:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                minus:(CGFloat) constant;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ @param name The name of the created constraint. You can fetch the created
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute
+                                 name:(nullable NSString *) name;
+
+/**
+ Creates a *related* constraint on the target view meaning the constraint
+ relates to safe area of another view. This is useful for aligning view to each other, for
+ example making the center of a view equal to the center of its superview.
+ 
+ - The constraint created by this method uses the `NSLayoutRelationEqual`
+ relation.
+ 
+ @param attribute The `NSLayoutAttribute` on the target view that is influenced
+ by the created constraint. You need to use `ALKAttribute` names.
+ @param relatedItem The view (or a class implementing the `UILayoutSupport`
+ protocol) to which the constraint relates to.
+ @param relatedAttribute The `NSLayoutAttribute on the related view that the
+ constraint relates to. You need to use `ALKAttribute` names.
+ constraint later on using `constraintWithName:` on the `targetView`.
+ 
+ @note Added for iOS 11. Before iOS 11 uses -make:equalTo:s:times:plus:on:name:
+ as fallback method.
+ @note By default multiplier value is 1.
+ 
+ @see -make:equalTo:s:times:plus:on:name:
+ 
+ @since 1.0.0
+ */
+- (nonnull NSLayoutConstraint *) make:(ALKAttribute) attribute
+                      equalToSafeArea:(nullable id) relatedItem
+                                    s:(ALKAttribute) relatedAttribute;
 
 @end

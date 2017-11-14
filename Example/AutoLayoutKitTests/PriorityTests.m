@@ -152,4 +152,112 @@
                                @"");
 }
 
+- (void)testDefaultPriorityUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    constraint = [c set:ALKWidth to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             UILayoutPriorityRequired,
+                             .0001f,
+                             @"");
+}
+
+- (void)testSetPriorityExplicitUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    [c setPriority:123];
+    constraint = [c set:ALKHeight to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             123,
+                             .0001f,
+                             @"");
+}
+
+- (void)testResetPriorityUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    [c setPriority:123];
+    [c set:ALKHeight to:100.f];
+    
+    [c setPriorityRequired];
+    constraint = [c set:ALKWidth to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             UILayoutPriorityRequired,
+                             .0001f,
+                             @"");
+}
+
+- (void)testSetPriorityRequiredUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    [c setPriorityRequired];
+    constraint = [c set:ALKHeight to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             UILayoutPriorityRequired,
+                             .0001f,
+                             @"");
+}
+
+- (void)testSetPriorityDefaultHighUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    [c setPriorityDefaultHigh];
+    constraint = [c set:ALKHeight to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             UILayoutPriorityDefaultHigh,
+                             .0001f,
+                             @"");
+}
+
+- (void)testSetPriorityDefaultLowUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    [c setPriorityDefaultLow];
+    constraint = [c set:ALKHeight to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             UILayoutPriorityDefaultLow,
+                             .0001f,
+                             @"");
+}
+
+- (void)testSetPriorityFittingSizeLevelUsingBlockConstraint
+{
+  __block NSLayoutConstraint * constraint = nil;
+  [ALKConstraints layout:self.view do:^(ALKConstraints *c) {
+    [c setPriorityFittingSizeLevel];
+    constraint = [c set:ALKHeight to:100.f];
+  }];
+  
+  XCTAssertNotNil(constraint);
+  XCTAssertEqualWithAccuracy(constraint.priority,
+                             UILayoutPriorityFittingSizeLevel,
+                             .0001f,
+                             @"");
+}
+
+
 @end

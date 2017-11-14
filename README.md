@@ -39,6 +39,48 @@ Entering Version 0.6.0, the basic sample from above can be improved even further
 }];
 ```
 
+### New in Version 1.0.0:
+#### Using with Swift without optional chaining
+```Swift
+ALKConstraints.layout(titleLabel) { c in
+  c.make(.trailing, equalTo: self, s: .trailing, minus: 10)
+}
+```
+
+#### Store newly created active constraint to block valiable
+```Objective-C
+__block NSLayoutConstraint * heightConstraint = nil;
+[ALKConstraints layout:self.view do:^(ALKConstraints * c) {
+  heightConstraint = [c set:ALKHeight to:100.f];
+}];
+```
+```Swift
+var leadingConstraint: NSLayoutConstraint? = nil
+ALKConstraints.layout(titleLabel) { c in
+  leadingConstraint = c.make(.leading, equalTo: self, s: .leading, plus: 10)
+}
+```
+
+#### Using iOS 11 [Safe Area](https://developer.apple.com/documentation/uikit/uiview/positioning_content_relative_to_the_safe_area)
+
+> In case of iOS version less than 11, default `make...` methods will be used as fallback.
+
+> All [Safe Area](https://developer.apple.com/documentation/uikit/uiview/positioning_content_relative_to_the_safe_area) methods uses times value as 1.0.
+
+```Objective-C
+[ALKConstraints layout:titleLabel do:^(ALKConstraints * c) {
+  [c make:ALKLeading equalToSafeArea:self.view s:ALKLeading plus:8];
+  [c make:ALKTrailing equalToSafeArea:self.view s:ALKTrailing minus:8];
+}];
+```
+```Swift
+ALKConstraints.layout(titleLabel) { c in
+  c.make(.leading, equalToSafeArea: self, s: .leading, plus: 8)
+  c.make(.trailing, equalToSafeArea: self, s: .trailing, minus: 8)
+}
+```
+
+
 ## Requirements
 
 ## Installation
